@@ -1,46 +1,88 @@
-# Getting Started with Create React App
+# **CSI606-2021-02 - Estrutura básica do repositório**
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Atualize os seus dados
 
-## Available Scripts
+- Nome: Gustavo Marques de Mello
+- Matrícula: 19.2.8048
+- Curso: Sistemas de Informação
+- Semestre/Ano correntes: 21.2
+- Link para o seu GitHub: https://github.com/GustavoMelloGit
 
-In the project directory, you can run:
+## [Projeto final:](./Projeto/README.md)
 
-### `yarn start`
+<a href="https://www.linkedin.com/in/gustavo-marques-mello/" target="_blank">
+  <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="linkedin"/>
+</a>
+<a href="https://www.instagram.com/gugamello29/?hl=pt-br" target="_blank">
+  <img src="https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white" alt="instagram"/>
+</a>
+<br />
+<div align="center">
+  <a href="https://github.com/UFOP-CSI477/2021-02-atividades-GustavoMelloGit">
+    <img src="./public/assets/images/Compact.png" alt="Logo" width="170" height="170">
+  </a>
+  <h3 align="center"><strong>GMPM</strong></h3>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+  <p align="center">
+    Nós guardamos seus dados com segurança
+    <br />
+    <a href="https://github.com/UFOP-CSI477/2021-02-atividades-GustavoMelloGit"><strong>Documentação »</strong></a>
+    <br />
+    <br />
+    <a href="https://github.com/UFOP-CSI477/2021-02-atividades-GustavoMelloGit/issues/new">Reportar bugs</a>
+    ·
+    <a href="https://github.com/UFOP-CSI477/2021-02-atividades-GustavoMelloGit/issues/new">Solicite uma feature</a>
+  </p>
+</div>
+<br/>
+<details open>
+  <summary>Sumário</summary>
+  <ol>
+    <li>
+      <a href="#sobre-o-projeto">Sobre o projeto</a>
+      <ul>
+        <li><a href="#sobre-o-projeto">Descrição</a></li>
+      </ul>
+      <ul>
+        <li><a href="#frameworks">Frameworks</a></li>
+      </ul>
+      <ul>
+        <li><a href="#linguagens">Linguagens</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#utilização">Utilização</a>
+    </li>
+    <li><a href="#começando">Começando</a></li>
+  </ol>
+</details>
+<br/>
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Sobre o projeto
+  O projeto consiste em um sistema onde o usuário conseguirá guardar sua contas, senhas e dados sensíveis. O sistema planeja facilitar a vida dos usuários, permitindo que eles possam acessar suas contas e dados de forma segura e facilitada. 
 
-### `yarn test`
+### Frameworks
+> **Front-end:** [React.js](https://reactjs.org/) <br/>
+> **Back-end:** [Node.js](https://nodejs.org/en/)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Linguagens
+> **Front-end:** [TypeScript](https://www.typescriptlang.org/)<br/>
+> **Back-end:** [TypeScript](https://www.typescriptlang.org/)
 
-### `yarn build`
+## Utilização
+  <ul>
+    <li>Verificar a força da senha utilizada</li>
+    <li>Verificar se a senha já foi vazada em algum banco de dados</li>
+    <li>Gerar senhas fortes</li>
+    <li>Criar uma conta no sistema, permitindo sincronizar em outros dispositivos</li>
+    <li>Acessar remotamente em outros dispositivos</li>
+  </ul>
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Começando
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
+[linkedin-url]: https://linkedin.com/in/gustavo-marques-mello
+[product-screenshot]: images/screenshot.png
