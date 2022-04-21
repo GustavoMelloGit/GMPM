@@ -1,0 +1,1 @@
+export type PropsChildrenOnly = { children?: React.ReactNode };
