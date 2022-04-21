@@ -10,9 +10,11 @@ export const VerticalNavContainer = styled(Box)`
 `;
 
 export const VerticalNavListContainer = styled(Box)`
-    width: 25rem;
+    width: 20rem;
+    min-width: 20rem;
     height: 100%;
     background-color: ${colors.blue[500]};
+    padding: 2rem 2rem;
 `;
 
 export const VerticalNavContentContainer = styled(Container)`
@@ -22,4 +24,10 @@ export const VerticalNavContentWrapper = styled(Box)`
     width: 100%;
     height: 100%;
     background-color: ${colors.gray[700]};
+`;
+
+export const ProfileContainer = styled(Box)`
+    display: flex;
+    width: 100%;
+    margin-bottom: 5rem;
 `;

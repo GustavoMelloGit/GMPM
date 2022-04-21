@@ -1,10 +1,11 @@
+import { sitesNavItem } from '../pages/Sites/route';
+
 export interface NavItemProps {
   id: string;
-  message: string;
   title: string;
-  icon?: React.FC;
+  icon?: React.ReactNode;
   exact?: boolean;
-  url?: string;
+  url: string;
   count?: number;
   color?: string;
   auth?: string[];
@@ -16,3 +17,5 @@ export interface RouteConfigProps {
   component: React.ReactNode;
   exact?: boolean;
 }
+
+export const navItems: NavItemProps[] = [sitesNavItem];

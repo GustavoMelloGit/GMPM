@@ -1,6 +1,13 @@
-import React from 'react';
 import SitesPage from '.';
-import { RouteConfigProps } from '../../routes/routesConfig';
+import { NavItemProps, RouteConfigProps } from '../../routes/routesConfig';
+import LanguageIcon from '@mui/icons-material/Language';
+
+export const sitesNavItem: NavItemProps = {
+  id: 'sites',
+  title: 'Sites',
+  url: '/sites',
+  icon: <LanguageIcon />,
+};
 
 const sitesRoutes: RouteConfigProps[] = [
   {
