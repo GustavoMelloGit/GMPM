@@ -1,6 +1,6 @@
 export interface NavItemProps {
   id: string;
-  messageId: string;
+  message: string;
   title: string;
   icon?: React.FC;
   exact?: boolean;
@@ -9,4 +9,10 @@ export interface NavItemProps {
   color?: string;
   auth?: string[];
   children?: NavItemProps[] | NavItemProps;
+}
+
+export interface RouteConfigProps {
+  path: string;
+  component: React.ReactNode;
+  exact?: boolean;
 }

@@ -1,13 +1,24 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import AuthPage from '../pages/Auth';
-import SitesPage from '../pages/Sites';
+import authRoutes from '../pages/Auth/route';
+import sitesRoutes from '../pages/Sites/route';
+
+const routesConfig = [...authRoutes, ...sitesRoutes];
 
 const AppRoutes: React.FC = () => {
   return (
     <Routes>
-      <Route path='/' element={<AuthPage />} />
-      <Route path='/sites' element={<SitesPage />} />
+      {routesConfig.map((route) => (
+        <Route
+          key={route.path}
+          element={
+            <React.Suspense fallback={<>...</>}>
+              {route.component}
+            </React.Suspense>
+          }
+          {...route}
+        />
+      ))}
     </Routes>
   );
 };

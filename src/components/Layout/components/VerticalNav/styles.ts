@@ -12,7 +12,7 @@ export const VerticalNavContainer = styled(Box)`
 export const VerticalNavListContainer = styled(Box)`
     width: 25rem;
     height: 100%;
-    background-color: ${colors.blue[600]};
+    background-color: ${colors.blue[500]};
 `;
 
 export const VerticalNavContentContainer = styled(Container)`
