@@ -1,11 +1,12 @@
 import React from 'react';
-import { Avatar, Box, Drawer, Typography } from '@mui/material';
+import { Avatar, Box, Typography } from '@mui/material';
 import {
   ProfileContainer,
   VerticalNavContainer,
   VerticalNavContentContainer,
   VerticalNavContentWrapper,
   VerticalNavListContainer,
+  VerticalNavDrawer,
 } from './styles';
 import { PropsChildrenOnly } from '../../../../shared/types/utils';
 import { deepOrange } from '@mui/material/colors';
@@ -20,7 +21,12 @@ const VerticalNavbar: React.FC<VerticalNavbarProps> = ({
 }) => {
   return (
     <VerticalNavContainer>
-      <Drawer anchor='left' open={isOpen} BackdropProps={{ invisible: true }}>
+      <VerticalNavDrawer
+        variant='persistent'
+        anchor='left'
+        open={isOpen}
+        BackdropProps={{ invisible: true }}
+      >
         <VerticalNavListContainer>
           <ProfileContainer>
             <Avatar
@@ -45,7 +51,7 @@ const VerticalNavbar: React.FC<VerticalNavbarProps> = ({
           </ProfileContainer>
           <NavList />
         </VerticalNavListContainer>
-      </Drawer>
+      </VerticalNavDrawer>
       <VerticalNavContentWrapper drawerIsOpen={isOpen}>
         <VerticalNavContentContainer>{children}</VerticalNavContentContainer>
       </VerticalNavContentWrapper>
