@@ -24,7 +24,7 @@ const VerticalNavbar: React.FC<PropsChildrenOnly> = ({ children }) => {
         {isMobile && drawerIsOpen && (
           <MobileHeader>
             <IconButton
-              aria-label='copia o email para área de transferência'
+              aria-label='fecha o menu de navegação'
               onClick={toggleDrawer}
               edge='end'
             >
