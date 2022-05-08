@@ -5,18 +5,22 @@ import { PropsChildrenOnly } from '../../shared/types/utils';
 interface LayoutContextProps {
   isMobile: boolean;
   toggleDrawer: () => void;
+  drawerIsOpen: boolean;
 }
 
-export const LayoutContext = React.createContext<Partial<LayoutContextProps>>(
-  {}
-);
+export const LayoutContext = React.createContext<LayoutContextProps>({
+  isMobile: false,
+  toggleDrawer: () => {},
+  drawerIsOpen: false,
+});
 
 const LayoutProvider: React.FC<PropsChildrenOnly> = ({ children }) => {
   const { width } = useWindowDimensions();
+  const [drawerIsOpen, setDrawerIsOpen] = useState(false);
   const [layoutIsMobile, setLayoutIsMobile] = useState(width <= 768);
 
-  const toggleIsMobile = () => {
-    setLayoutIsMobile(!layoutIsMobile);
+  const toggleDrawer = () => {
+    setDrawerIsOpen((prev) => !prev);
   };
 
   useEffect(() => {
@@ -25,7 +29,7 @@ const LayoutProvider: React.FC<PropsChildrenOnly> = ({ children }) => {
 
   return (
     <LayoutContext.Provider
-      value={{ isMobile: layoutIsMobile, toggleDrawer: toggleIsMobile }}
+      value={{ isMobile: layoutIsMobile, toggleDrawer, drawerIsOpen }}
     >
       {children}
     </LayoutContext.Provider>

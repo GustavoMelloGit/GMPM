@@ -1,59 +1,71 @@
-import React from 'react';
-import { Avatar, Box, Typography } from '@mui/material';
+import React, { useContext } from 'react';
+import { Avatar, Box, Typography, Button, IconButton } from '@mui/material';
 import {
   AppDrawer,
+  MobileHeader,
   ProfileContainer,
   VerticalNavContainer,
   VerticalNavContentContainer,
   VerticalNavContentWrapper,
-  VerticalNavListContainer,
 } from './styles';
 import { PropsChildrenOnly } from '../../../../shared/types/utils';
 import { deepOrange } from '@mui/material/colors';
 import { NavList } from './components';
+import MenuIcon from '@mui/icons-material/Menu';
+import CloseIcon from '@mui/icons-material/Close';
+import { LayoutContext } from '../../../../contexts/layout';
 
-interface VerticalNavbarProps extends PropsChildrenOnly {
-  isOpen: boolean;
-}
-const VerticalNavbar: React.FC<VerticalNavbarProps> = ({
-  children,
-  isOpen,
-}) => {
+const VerticalNavbar: React.FC<PropsChildrenOnly> = ({ children }) => {
+  const { isMobile, toggleDrawer, drawerIsOpen } = useContext(LayoutContext);
+
   return (
     <VerticalNavContainer>
-      <AppDrawer
-        anchor='left'
-        open={isOpen}
-        BackdropProps={{ invisible: true }}
-        variant='persistent'
-      >
-        <VerticalNavListContainer>
-          <ProfileContainer>
-            <Avatar
-              variant='rounded'
-              sx={{
-                bgcolor: deepOrange[500],
-                height: 50,
-                width: 50,
-                fontSize: '2em',
-              }}
+      <AppDrawer drawerIsOpen={drawerIsOpen} isMobile={isMobile}>
+        {isMobile && drawerIsOpen && (
+          <MobileHeader>
+            <IconButton
+              aria-label='copia o email para área de transferência'
+              onClick={toggleDrawer}
+              edge='end'
             >
-              G
-            </Avatar>
-            <Box ml={1}>
-              <Typography fontWeight={700} noWrap width={200}>
-                Gustavo Marques de Mello Muito grande
-              </Typography>
-              <Typography fontSize={13} fontWeight={500} noWrap width={200}>
-                gugamello2014@yahoo.com
-              </Typography>
-            </Box>
-          </ProfileContainer>
-          <NavList />
-        </VerticalNavListContainer>
+              <CloseIcon sx={{ fill: deepOrange[500] }} />
+            </IconButton>
+          </MobileHeader>
+        )}
+        <ProfileContainer>
+          <Avatar
+            variant='rounded'
+            sx={{
+              bgcolor: deepOrange[500],
+              height: 50,
+              width: 50,
+              fontSize: '2em',
+            }}
+          >
+            G
+          </Avatar>
+          <Box ml={1} minWidth={0}>
+            <Typography fontWeight={700} noWrap>
+              Gustavo Marques de Mello Muito grande
+            </Typography>
+            <Typography fontSize={13} fontWeight={500} noWrap>
+              gugamello2014@yahoo.com
+            </Typography>
+          </Box>
+        </ProfileContainer>
+        <NavList />
       </AppDrawer>
-      <VerticalNavContentWrapper drawerIsOpen={isOpen}>
-        <VerticalNavContentContainer>{children}</VerticalNavContentContainer>
+      <VerticalNavContentWrapper isMobile={isMobile}>
+        <VerticalNavContentContainer>
+          {isMobile && (
+            <MobileHeader>
+              <Button onClick={toggleDrawer}>
+                <MenuIcon sx={{ fill: deepOrange[500] }} />
+              </Button>
+            </MobileHeader>
+          )}
+          {children}
+        </VerticalNavContentContainer>
       </VerticalNavContentWrapper>
     </VerticalNavContainer>
   );
