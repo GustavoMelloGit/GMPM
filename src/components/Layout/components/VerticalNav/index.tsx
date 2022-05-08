@@ -1,6 +1,7 @@
 import React from 'react';
-import { Avatar, Box, Drawer, Typography } from '@mui/material';
+import { Avatar, Box, Typography } from '@mui/material';
 import {
+  AppDrawer,
   ProfileContainer,
   VerticalNavContainer,
   VerticalNavContentContainer,
@@ -20,7 +21,12 @@ const VerticalNavbar: React.FC<VerticalNavbarProps> = ({
 }) => {
   return (
     <VerticalNavContainer>
-      <Drawer anchor='left' open={isOpen} BackdropProps={{ invisible: true }}>
+      <AppDrawer
+        anchor='left'
+        open={isOpen}
+        BackdropProps={{ invisible: true }}
+        variant='persistent'
+      >
         <VerticalNavListContainer>
           <ProfileContainer>
             <Avatar
@@ -45,7 +51,7 @@ const VerticalNavbar: React.FC<VerticalNavbarProps> = ({
           </ProfileContainer>
           <NavList />
         </VerticalNavListContainer>
-      </Drawer>
+      </AppDrawer>
       <VerticalNavContentWrapper drawerIsOpen={isOpen}>
         <VerticalNavContentContainer>{children}</VerticalNavContentContainer>
       </VerticalNavContentWrapper>

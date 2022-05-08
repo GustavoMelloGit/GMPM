@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 import { Box } from '@mui/system';
 import colors from '../../../../styles/colors';
-import { Container } from '@mui/material';
+import { Container, Drawer } from '@mui/material';
 
 export const VerticalNavContainer = styled(Box)`
   height: 100%;
@@ -35,4 +35,10 @@ export const ProfileContainer = styled(Box)`
   display: flex;
   width: 100%;
   margin-bottom: 5rem;
+`;
+
+export const AppDrawer = styled(Drawer)`
+  > div {
+    background-color: ${colors.blue[500]};
+  }
 `;
