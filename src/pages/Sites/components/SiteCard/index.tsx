@@ -6,36 +6,33 @@ import {
   Divider,
   Typography,
   Button,
-  TextField,
-  InputAdornment,
-  IconButton,
+  MenuItem,
+  ListItemIcon,
+  ListItemText,
 } from '@mui/material';
 import {
   SiteCardContentWrapper,
   SiteCardHeader,
   SiteCardMenuIcon,
   SiteCardGoToWebsite,
+  SiteCardMenu,
 } from './styles';
 
 //Icons
-import ContentCopyIcon from '@mui/icons-material/ContentCopy';
-import VisibilityIcon from '@mui/icons-material/Visibility';
-import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import LogoutIcon from '@mui/icons-material/Logout';
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
+import DataFields from './components/DataFields';
 
 interface SiteCardProps {
   site: Site;
 }
 
 const SiteCard: React.FC<SiteCardProps> = ({ site }) => {
-  const [showPassword, setShowPassword] = useState(false);
+  const [menuIsOpen, setMenuIsOpen] = useState<null | HTMLElement>(null);
 
-  const handleCopyToClipboard = (text: string) => {
-    navigator.clipboard.writeText(text);
-  };
-
-  const handleTogglePassword = () => {
-    setShowPassword((prev) => !prev);
+  const handleToggleMenu = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setMenuIsOpen(event.currentTarget);
   };
 
   return (
@@ -55,68 +52,38 @@ const SiteCard: React.FC<SiteCardProps> = ({ site }) => {
               {site.url}
             </Typography>
           </Box>
-          <Button aria-label={`abrir menu ${site.title}`} variant='text'>
+          <Button
+            aria-label={`abrir menu ${site.title}`}
+            variant='text'
+            onClick={handleToggleMenu}
+          >
             <SiteCardMenuIcon />
           </Button>
+          <SiteCardMenu
+            anchorEl={menuIsOpen}
+            open={Boolean(menuIsOpen)}
+            onClose={() => setMenuIsOpen(null)}
+            MenuListProps={{
+              'aria-labelledby': 'site-card-menu',
+            }}
+          >
+            <MenuItem>
+              <ListItemIcon>
+                <EditIcon />
+              </ListItemIcon>
+              <ListItemText>Editar</ListItemText>
+            </MenuItem>
+            <MenuItem>
+              <ListItemIcon>
+                <DeleteIcon />
+              </ListItemIcon>
+              <ListItemText>Excluir</ListItemText>
+            </MenuItem>
+          </SiteCardMenu>
         </SiteCardHeader>
         <Divider />
         <SiteCardContentWrapper>
-          <TextField
-            label='E-mail'
-            value={site.email}
-            variant='filled'
-            fullWidth
-            disabled
-            InputProps={{
-              endAdornment: (
-                <InputAdornment position='end'>
-                  <IconButton
-                    aria-label='copia o email para área de transferência'
-                    onClick={handleCopyToClipboard.bind(null, site.email)}
-                    edge='end'
-                  >
-                    <ContentCopyIcon className='icon' />
-                  </IconButton>
-                </InputAdornment>
-              ),
-            }}
-          />
-          <TextField
-            label='Senha'
-            value={site.password}
-            type={showPassword ? 'text' : 'password'}
-            variant='filled'
-            fullWidth
-            disabled
-            InputProps={{
-              endAdornment: (
-                <React.Fragment>
-                  <InputAdornment position='end'>
-                    <IconButton
-                      aria-label='mostra/esconde a senha'
-                      onClick={handleTogglePassword}
-                      edge='end'
-                    >
-                      {showPassword ? (
-                        <VisibilityOffIcon className='icon' />
-                      ) : (
-                        <VisibilityIcon className='icon' />
-                      )}
-                    </IconButton>
-                  </InputAdornment>
-                  <InputAdornment position='end'>
-                    <IconButton
-                      aria-label='copia o email para área de transferência'
-                      onClick={handleCopyToClipboard.bind(null, site.password)}
-                      edge='end'
-                    >
-                      <ContentCopyIcon className='icon' />
-                    </IconButton>
-                  </InputAdornment>
-                </React.Fragment>
-              ),
-            }}
-          />
+          <DataFields site={site} />
           <SiteCardGoToWebsite href={site.url}>
             <LogoutIcon className='icon' />
             Abrir no navegador
@@ -126,4 +93,4 @@ const SiteCard: React.FC<SiteCardProps> = ({ site }) => {
     </Card>
   );
 };
-export default SiteCard;
+export default React.memo(SiteCard);

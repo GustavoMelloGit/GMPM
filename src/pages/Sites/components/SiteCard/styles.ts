@@ -1,6 +1,6 @@
 import { Box, styled } from '@mui/system';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-import { Button } from '@mui/material';
+import { Button, Menu } from '@mui/material';
 
 export const SiteCardHeader = styled(Box)`
   display: flex;
@@ -31,4 +31,13 @@ export const SiteCardGoToWebsite = styled(Button)`
   border-radius: 0;
   color: #000;
   margin: 1rem 0;
+`;
+
+export const SiteCardMenu = styled(Menu)`
+  span {
+    color: black;
+  }
+  svg {
+    fill: black;
+  }
 `;

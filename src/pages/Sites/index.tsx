@@ -1,14 +1,24 @@
-import React from 'react';
-import { Box } from '@mui/system';
+import React, { useEffect, useState } from 'react';
 import { Typography } from '@mui/material';
-import { HomeContentGrid, HomeHeader } from './styles';
+import { HomeContainer, HomeContentGrid, HomeHeader } from './styles';
 import { SearchInput } from '../../components/Inputs';
 import sites from '../../mocks/Sites.json';
 import SiteCard from './components/SiteCard';
+import { Site } from '../../shared/types/Site';
 
 const SitesPage: React.FC = () => {
+  const [sitesData, setSitesData] = useState([] as Site[]);
+
+  useEffect(() => {
+    setSitesData(sites.sites);
+
+    return () => {
+      setSitesData([]);
+    };
+  }, []);
+
   return (
-    <Box>
+    <HomeContainer>
       <HomeHeader>
         <Typography variant='h2' component='h1'>
           Sites
@@ -16,11 +26,11 @@ const SitesPage: React.FC = () => {
         <SearchInput />
       </HomeHeader>
       <HomeContentGrid>
-        {sites.sites.map((site, index) => (
+        {sitesData.map((site, index) => (
           <SiteCard key={index} site={site} />
         ))}
       </HomeContentGrid>
-    </Box>
+    </HomeContainer>
   );
 };
 export default SitesPage;
