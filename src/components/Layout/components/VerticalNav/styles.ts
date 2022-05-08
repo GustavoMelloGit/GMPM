@@ -3,6 +3,11 @@ import { Box } from '@mui/system';
 import colors from '../../../../styles/colors';
 import { Container, Drawer } from '@mui/material';
 
+export const VerticalNavDrawer = styled(Drawer)`
+  > div {
+    background-color: transparent;
+  }
+`;
 export const VerticalNavContainer = styled(Box)`
   height: 100%;
   width: 100%;
