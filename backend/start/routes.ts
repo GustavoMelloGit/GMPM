@@ -33,4 +33,12 @@ Route.group(() => {
   Route.delete('/users/:uuid', 'UsersController.delete')
 }).middleware(['auth'])
 
+Route.group(() => {
+  Route.post('/sites', 'SitesController.create')
+  Route.get('/sites', 'SitesController.read')
+  Route.get('/sites/:uuid', 'SitesController.findOne')
+  Route.put('/sites/:uuid', 'SitesController.update')
+  Route.delete('/sites/:uuid', 'SitesController.delete')
+}).middleware(['auth'])
+
 Route.post('/login', 'AuthController.login')

@@ -16,9 +16,8 @@ export default class UsersController {
     }
   }
 
-  public async read({ auth }: HttpContextContract) {
+  public async read() {
     try {
-      await auth.use('api').authenticate()
       const all = await User.all()
       return all.map((user) => ({ name: user.name, email: user.email }))
     } catch (e) {
