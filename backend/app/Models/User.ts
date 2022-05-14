@@ -15,6 +15,9 @@ export default class User extends BaseModel {
   @column()
   public name: string
 
+  @column()
+  public role: 'admin' | 'user'
+
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
 
@@ -26,15 +29,15 @@ export default class User extends BaseModel {
     user.password = await Hash.make(user.password)
   }
 
+  @beforeCreate()
+  public static async generateUuid(user: User) {
+    user.uuid = crypto.randomBytes(16).toString('hex')
+  }
+
   @beforeUpdate()
   public static async hashPasswordOnUpdate(user: User) {
     if (user.password) {
       user.password = await Hash.make(user.password)
     }
-  }
-
-  @beforeCreate()
-  public static async generateUuid(user: User) {
-    user.uuid = crypto.randomBytes(16).toString('hex')
   }
 }

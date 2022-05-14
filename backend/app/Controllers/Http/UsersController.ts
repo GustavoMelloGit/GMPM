@@ -9,6 +9,7 @@ export default class UsersController {
         name,
         email,
         password,
+        role: 'user',
       })
       return user
     } catch (e) {
@@ -19,7 +20,9 @@ export default class UsersController {
   public async read() {
     try {
       const all = await User.all()
-      return all.map((user) => ({ name: user.name, email: user.email }))
+      return all
+        .filter((user) => user.role !== 'admin')
+        .map((user) => ({ name: user.name, email: user.email }))
     } catch (e) {
       return { error: e }
     }
