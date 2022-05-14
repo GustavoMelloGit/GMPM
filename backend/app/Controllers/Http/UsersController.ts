@@ -34,4 +34,26 @@ export default class UsersController {
       return { error: e }
     }
   }
+
+  public async update({ params, request }: HttpContextContract) {
+    try {
+      const user = await User.findByOrFail('uuid', params.uuid)
+      const { name, email, password } = request.only(['name', 'email', 'password'])
+      user.merge({ name, email, password })
+      await user.save()
+      return { name: user.name, email: user.email, uuid: user.uuid }
+    } catch (e) {
+      return { error: e }
+    }
+  }
+
+  public async delete({ params }: HttpContextContract) {
+    try {
+      const user = await User.findByOrFail('uuid', params.uuid)
+      await user.delete()
+      return { message: 'User deleted' }
+    } catch (e) {
+      return { error: e }
+    }
+  }
 }

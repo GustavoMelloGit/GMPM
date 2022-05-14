@@ -29,6 +29,8 @@ Route.post('/users', 'UsersController.create')
 Route.group(() => {
   Route.get('/users', 'UsersController.read')
   Route.get('/users/:uuid', 'UsersController.findOne')
+  Route.put('/users/:uuid', 'UsersController.update')
+  Route.delete('/users/:uuid', 'UsersController.delete')
 }).middleware(['auth'])
 
 Route.post('/login', 'AuthController.login')
