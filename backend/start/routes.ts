@@ -25,7 +25,10 @@ Route.get('/', async () => {
 })
 
 Route.post('/users', 'UsersController.create')
-Route.get('/users', 'UsersController.read')
-Route.get('/users/:uuid', 'UsersController.findOne')
+
+Route.group(() => {
+  Route.get('/users', 'UsersController.read')
+  Route.get('/users/:uuid', 'UsersController.findOne')
+}).middleware(['auth'])
 
 Route.post('/login', 'AuthController.login')

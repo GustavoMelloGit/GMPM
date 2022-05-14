@@ -16,8 +16,9 @@ export default class UsersController {
     }
   }
 
-  public async read() {
+  public async read({ auth }: HttpContextContract) {
     try {
+      await auth.use('api').authenticate()
       const all = await User.all()
       return all.map((user) => ({ name: user.name, email: user.email }))
     } catch (e) {
@@ -27,7 +28,7 @@ export default class UsersController {
 
   public async findOne({ params }: HttpContextContract) {
     try {
-      const user = await User.findOrFail(params.uuid)
+      const user = await User.findByOrFail('uuid', params.uuid)
       return { name: user.name, email: user.email, uuid: user.uuid }
     } catch (e) {
       return { error: e }
