@@ -14,6 +14,6 @@ export default class UsersController {
 
   public async index() {
     const all = await User.all()
-    return all.map((user) => ({ name: user.name, email: user.email }))
+    return all.map((user) => ({ name: user.name, email: user.email, uuid: user.uuid }))
   }
 }

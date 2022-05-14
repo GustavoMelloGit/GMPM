@@ -1,10 +1,10 @@
 import { DateTime } from 'luxon'
 import { BaseModel, column, beforeCreate } from '@ioc:Adonis/Lucid/Orm'
 import Hash from '@ioc:Adonis/Core/Hash'
-
+import crypto from 'crypto'
 export default class User extends BaseModel {
   @column({ isPrimary: true })
-  public id: number
+  public uuid: string
 
   @column()
   public email: string
@@ -24,5 +24,10 @@ export default class User extends BaseModel {
   @beforeCreate()
   public static async hashPassword(user: User) {
     user.password = await Hash.make(user.password)
+  }
+
+  @beforeCreate()
+  public static async generateUuid(user: User) {
+    user.uuid = crypto.randomBytes(16).toString('hex')
   }
 }
