@@ -2,7 +2,8 @@ import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Site from 'App/Models/Site'
 
 export default class SitesController {
-  public async create({ request }: HttpContextContract) {
+  public async create({ request, auth }: HttpContextContract) {
+    const userUuid = auth.user?.$attributes.uuid
     const { name, url, email, password } = request.only(['name', 'url', 'email', 'password'])
     try {
       const site = await Site.create({
@@ -10,6 +11,7 @@ export default class SitesController {
         url,
         email,
         password,
+        user_uuid: userUuid,
       })
       return site
     } catch (e) {
@@ -17,9 +19,11 @@ export default class SitesController {
     }
   }
 
-  public async read() {
+  public async read({ auth }: HttpContextContract) {
+    const userUuid = auth.user?.$attributes.uuid
     try {
-      const all = await Site.all()
+      const all = await Site.query().where('user_uuid', userUuid)
+
       return all
     } catch (e) {
       return { error: e }

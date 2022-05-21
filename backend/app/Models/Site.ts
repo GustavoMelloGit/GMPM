@@ -1,5 +1,7 @@
 import { DateTime } from 'luxon'
-import { BaseModel, column } from '@ioc:Adonis/Lucid/Orm'
+import { BaseModel, beforeCreate, BelongsTo, belongsTo, column } from '@ioc:Adonis/Lucid/Orm'
+import crypto from 'crypto'
+import User from './User'
 
 export default class Site extends BaseModel {
   @column({ isPrimary: true })
@@ -17,9 +19,23 @@ export default class Site extends BaseModel {
   @column()
   public password: string
 
+  @column()
+  public user_uuid: string
+
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
 
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime
+
+  @beforeCreate()
+  public static async generateUuid(site: Site) {
+    site.uuid = crypto.randomBytes(16).toString('hex')
+  }
+
+  @belongsTo(() => User, {
+    localKey: 'user_uuid',
+    foreignKey: 'uuid',
+  })
+  public user: BelongsTo<typeof User>
 }

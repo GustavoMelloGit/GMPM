@@ -6,7 +6,12 @@ export default class Sites extends BaseSchema {
   public async up() {
     this.schema.createTable(this.tableName, (table) => {
       table.string('uuid').primary()
-      table.string('user_uuid').references('uuid').inTable('users').onDelete('CASCADE')
+      table
+        .string('user_uuid')
+        .notNullable()
+        .references('uuid')
+        .inTable('users')
+        .onDelete('CASCADE')
       table.string('url').notNullable()
       table.string('name').notNullable()
       table.string('email')

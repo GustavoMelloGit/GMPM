@@ -1,7 +1,15 @@
 import { DateTime } from 'luxon'
-import { BaseModel, column, beforeCreate, beforeUpdate } from '@ioc:Adonis/Lucid/Orm'
+import {
+  BaseModel,
+  column,
+  beforeCreate,
+  beforeUpdate,
+  hasMany,
+  HasMany,
+} from '@ioc:Adonis/Lucid/Orm'
 import Hash from '@ioc:Adonis/Core/Hash'
 import crypto from 'crypto'
+import Site from './Site'
 export default class User extends BaseModel {
   @column({ isPrimary: true })
   public uuid: string
@@ -40,4 +48,10 @@ export default class User extends BaseModel {
       user.password = await Hash.make(user.password)
     }
   }
+
+  @hasMany(() => Site, {
+    localKey: 'uuid',
+    foreignKey: 'user_uuid',
+  })
+  public sites: HasMany<typeof Site>
 }
