@@ -1,5 +1,4 @@
 import React from 'react';
-import AppLayout from './components/Layout';
 import LayoutProvider from './contexts/layout';
 import AppRoutes from './routes';
 import GlobalStyle from './styles/global';
@@ -9,9 +8,7 @@ function App() {
     <React.Fragment>
       <GlobalStyle />
       <LayoutProvider>
-        <AppLayout>
-          <AppRoutes />
-        </AppLayout>
+        <AppRoutes />
       </LayoutProvider>
     </React.Fragment>
   );

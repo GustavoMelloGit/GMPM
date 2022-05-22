@@ -1,4 +1,4 @@
-import SitesPage from '.';
+import { lazy } from 'react';
 import { NavItemProps, RouteConfigProps } from '../../routes/routesConfig';
 import LanguageIcon from '@mui/icons-material/Language';
 
@@ -12,7 +12,7 @@ export const sitesNavItem: NavItemProps = {
 const sitesRoutes: RouteConfigProps[] = [
   {
     path: '/sites',
-    component: <SitesPage />,
+    component: lazy(() => import('.')),
     exact: true,
   },
 ];

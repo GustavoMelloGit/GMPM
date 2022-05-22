@@ -1,11 +1,10 @@
-import React from 'react';
+import { lazy } from 'react';
 import { RouteConfigProps } from '../../routes/routesConfig';
-import LoginPage from './Login';
 
 const authRoutes: RouteConfigProps[] = [
   {
     path: '/',
-    component: <LoginPage />,
+    component: lazy(() => import('./Login')),
     exact: true,
   },
 ];

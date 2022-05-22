@@ -1,3 +1,4 @@
+import { FC, LazyExoticComponent } from 'react';
 import { sitesNavItem } from '../pages/Sites/route';
 
 export interface NavItemProps {
@@ -14,7 +15,7 @@ export interface NavItemProps {
 
 export interface RouteConfigProps {
   path: string;
-  component: React.ReactNode;
+  component: LazyExoticComponent<FC<{}>>;
   exact?: boolean;
 }
 
