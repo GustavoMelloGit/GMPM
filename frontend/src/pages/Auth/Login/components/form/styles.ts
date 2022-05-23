@@ -14,6 +14,9 @@ export const LoginFormikForm = styled(Form)`
 
 export const LoginSubmitButton = styled(Button)`
   background-color: ${colors.orange[500]};
+  :hover {
+    background-color: ${colors.orange[600]};
+  }
 `;
 
 export const LoginRememberMeCheckbox = styled(Checkbox)`

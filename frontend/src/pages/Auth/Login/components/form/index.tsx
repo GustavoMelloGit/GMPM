@@ -19,7 +19,7 @@ export interface LoginFormValues {
   rememberMe: boolean;
 }
 interface LoginFormProps {
-  onSubmit: (values: LoginFormValues) => void;
+  onSubmit: (values: LoginFormValues) => Promise<void>;
   titleText: string;
 }
 const LoginForm: React.FC<LoginFormProps> = ({ onSubmit, titleText }) => {

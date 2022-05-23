@@ -7,19 +7,23 @@ import {
 import { ReactComponent as LoginLogo } from '../../../assets/images/palm-recognition.svg';
 import { Box, Card, Typography } from '@mui/material';
 import colors from '../../../styles/colors';
-import LoginForm from './components/form';
+import LoginForm, { LoginFormValues } from './components/form';
+import api from '../../../service/api';
 
 const LoginPage: React.FC = () => {
+  const handleLogin = async (values: LoginFormValues) => {
+    try {
+      const response = await api.post('/login', values);
+      console.log(response.data);
+    } catch (e) {
+      console.log(e);
+    }
+  };
   return (
     <LoginPageContainer>
       <LoginPageFormContainer>
         <Box component={Card} p={5}>
-          <LoginForm
-            onSubmit={(values) => {
-              console.log(values);
-            }}
-            titleText='Login'
-          />
+          <LoginForm onSubmit={handleLogin} titleText='Login' />
         </Box>
       </LoginPageFormContainer>
       <LoginPageAside>

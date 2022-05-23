@@ -14,6 +14,7 @@ const colors = {
   },
   orange: {
     500: '#FF6341',
+    600: '#FF4F2E',
   },
 };
 
