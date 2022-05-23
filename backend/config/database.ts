@@ -33,8 +33,8 @@ const databaseConfig: DatabaseConfig = {
     | npm i mysql
     |
     */
-    mysql: {
-      client: 'mysql',
+    mysql2: {
+      client: 'mysql2',
       connection: {
         host: Env.get('MYSQL_HOST'),
         port: Env.get('MYSQL_PORT'),
