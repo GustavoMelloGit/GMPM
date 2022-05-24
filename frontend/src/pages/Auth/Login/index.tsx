@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {
   LoginPageAside,
   LoginPageContainer,
@@ -9,12 +9,14 @@ import { Box, Card, Typography } from '@mui/material';
 import colors from '../../../styles/colors';
 import LoginForm, { LoginFormValues } from './components/form';
 import api from '../../../service/api';
+import { authContext } from '../../../contexts/Auth';
 
 const LoginPage: React.FC = () => {
+  const { login } = useContext(authContext);
   const handleLogin = async (values: LoginFormValues) => {
     try {
       const response = await api.post('/login', values);
-      console.log(response.data);
+      login(response.data, values.rememberMe);
     } catch (e) {
       console.log(e);
     }

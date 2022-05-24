@@ -27,6 +27,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onSubmit, titleText }) => {
     email: yup.string().email().required('Digite um e-mail'),
     password: yup.string().required('Digite sua senha'),
   });
+
   const initialValues: LoginFormValues = {
     email: '',
     password: '',
@@ -39,16 +40,27 @@ const LoginForm: React.FC<LoginFormProps> = ({ onSubmit, titleText }) => {
       onSubmit={onSubmit}
       initialValues={initialValues}
     >
-      {() => (
+      {({ setFieldValue }) => (
         <LoginFormikForm>
           <Typography color={colors.gray[700]} variant='h4' component='h1'>
             {titleText}
           </Typography>
           <Divider sx={{ width: '100%' }} />
-          <FormikTextInput label='E-mail' name='email' type='email' />
+          <FormikTextInput
+            autoComplete='username'
+            label='E-mail'
+            name='email'
+            type='email'
+          />
           <FormikPasswordInput label='Senha' name='password' />
           <FormControlLabel
-            control={<LoginRememberMeCheckbox />}
+            control={
+              <LoginRememberMeCheckbox
+                onChange={(e) => {
+                  setFieldValue('rememberMe', e.target.checked);
+                }}
+              />
+            }
             label='Lembre-se de mim'
           />
           <LoginSubmitButton variant='contained' fullWidth type='submit'>

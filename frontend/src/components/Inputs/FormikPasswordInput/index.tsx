@@ -43,6 +43,7 @@ const FormikPasswordInput: React.FC<FormikPasswordInputProps> = ({
       variant={variant}
       helperText={errorText}
       error={!!errorText}
+      autoComplete='current-password'
       fullWidth
       InputProps={{
         endAdornment: (
