@@ -1,6 +1,7 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import AppLayout from '../components/Layout';
+import ProtectedRoute from '../components/ProtectedRoute';
 import authRoutes from '../pages/Auth/route';
 import sitesRoutes from '../pages/Sites/route';
 
@@ -21,9 +22,11 @@ const AppRoutes: React.FC = () => {
             <Route
               key={route.path}
               element={
-                <AppLayout>
-                  <Component />
-                </AppLayout>
+                <ProtectedRoute>
+                  <AppLayout>
+                    <Component />
+                  </AppLayout>
+                </ProtectedRoute>
               }
               {...route}
             />

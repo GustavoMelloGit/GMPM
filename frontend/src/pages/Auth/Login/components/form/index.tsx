@@ -30,7 +30,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onSubmit, titleText }) => {
     password: yup
       .string()
       .required('Digite sua senha')
-      .min(6, 'Senha muito curta'),
+      .min(5, 'Senha muito curta'),
   });
 
   const initialValues: LoginFormValues = {

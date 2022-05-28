@@ -11,18 +11,25 @@ import colors from '../../../styles/colors';
 import LoginForm, { LoginFormValues } from './components/form';
 import api from '../../../service/api';
 import { authContext } from '../../../contexts/Auth';
+import { Navigate } from 'react-router-dom';
+import { AppURLs } from '../../../shared/constants';
 
 const LoginPage: React.FC = () => {
-  const { login } = useContext(authContext);
+  const { login, user } = useContext(authContext);
+
+  if (Object.keys(user).length) {
+    return <Navigate to={AppURLs.SITES} />;
+  }
+
   const handleLogin = async (values: LoginFormValues) => {
     try {
       const response = await api.post('/login', values);
-      console.log(response.data);
       login(response.data, values.rememberMe);
     } catch (e) {
       console.log(e);
     }
   };
+
   return (
     <LoginPageContainer>
       <LoginPageAside>

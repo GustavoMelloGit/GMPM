@@ -6,7 +6,7 @@ const ProtectedRoute: React.FC<{ children: JSX.Element }> = ({ children }) => {
   const { user } = useContext(authContext);
   const location = useLocation();
 
-  if (!user) {
+  if (!Object.keys(user).length) {
     return <Navigate to='/' state={{ from: location }} replace />;
   }
   return children;
