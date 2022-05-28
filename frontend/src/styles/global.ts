@@ -8,15 +8,13 @@ const GlobalStyle = createGlobalStyle`
         padding: 0;
         font-family: 'Poppins', sans-serif !important;
     }
-    body{
-        background-color: ${colors.gray[700]};
-    }
     html{
         height: 100%;
         width: 100%;
     }
     body{
         height: 100%;
+        background-color: ${colors.gray[700]};
         width: 100%;
     }
     #root{

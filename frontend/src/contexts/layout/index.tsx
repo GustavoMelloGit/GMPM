@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { mobileWidth } from '../../shared/constants';
 import useWindowDimensions from '../../shared/hooks/useWindowDimensions';
 import { PropsChildrenOnly } from '../../shared/types/utils';
 
@@ -17,7 +18,7 @@ export const LayoutContext = React.createContext<LayoutContextProps>({
 const LayoutProvider: React.FC<PropsChildrenOnly> = ({ children }) => {
   const { width } = useWindowDimensions();
   const [drawerIsOpen, setDrawerIsOpen] = useState(false);
-  const [layoutIsMobile, setLayoutIsMobile] = useState(width <= 768);
+  const [layoutIsMobile, setLayoutIsMobile] = useState(width <= mobileWidth);
 
   const toggleDrawer = () => {
     setDrawerIsOpen((prev) => !prev);

@@ -1,3 +1,4 @@
+import { mobileWidth } from './../../../shared/constants';
 import { Container } from '@mui/material';
 import { Box, styled } from '@mui/system';
 import colors from '../../../styles/colors';
@@ -8,16 +9,25 @@ export const LoginPageContainer = styled(Box)`
   display: flex;
   justify-content: space-between;
   background-color: ${colors.gray[200]};
+  @media screen and (max-width: ${mobileWidth}px) {
+    flex-direction: column;
+    background-color: ${colors.gray[700]};
+    justify-content: center;
+  }
 `;
 
 export const LoginPageFormContainer = styled(Container)`
   height: 100%;
   width: 50vw;
-  min-width: 450px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  @media screen and (max-width: ${mobileWidth}px) {
+    width: 100vw;
+    height: fit-content;
+  }
 `;
 export const LoginPageAside = styled(Box)`
   width: 50vw;
@@ -28,9 +38,27 @@ export const LoginPageAside = styled(Box)`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 0 1rem;
 
   svg {
     width: 100%;
     height: auto;
+  }
+  @media screen and (max-width: ${mobileWidth}px) {
+    flex-direction: row;
+    width: 100vw;
+    max-width: 100%;
+    height: fit-content;
+
+    svg {
+      width: 70%;
+      min-width: 200px;
+    }
+  }
+`;
+
+export const LoginPageHeadline = styled(Box)`
+  @media screen and (max-width: ${mobileWidth}px) {
+    display: none;
   }
 `;

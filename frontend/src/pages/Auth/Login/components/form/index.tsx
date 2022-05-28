@@ -2,16 +2,15 @@ import React from 'react';
 import { Formik } from 'formik';
 import * as yup from 'yup';
 import {
-  FormikPasswordInput,
-  FormikTextInput,
-} from '../../../../../components/Inputs';
-import {
+  LoginDivider,
+  LoginEmailInput,
   LoginFormikForm,
+  LoginFormTitle,
+  LoginPasswordInput,
   LoginRememberMeCheckbox,
   LoginSubmitButton,
 } from './styles';
-import { Divider, Typography, FormControlLabel } from '@mui/material';
-import colors from '../../../../../styles/colors';
+import { CircularProgress, FormControlLabel } from '@mui/material';
 
 export interface LoginFormValues {
   email: string;
@@ -24,35 +23,42 @@ interface LoginFormProps {
 }
 const LoginForm: React.FC<LoginFormProps> = ({ onSubmit, titleText }) => {
   const validationSchema = yup.object().shape({
-    email: yup.string().email().required('Digite um e-mail'),
+    email: yup
+      .string()
+      .email('Digite um e-mail válido')
+      .required('Digite um e-mail'),
     password: yup.string().required('Digite sua senha'),
   });
 
   const initialValues: LoginFormValues = {
     email: '',
     password: '',
-    rememberMe: false,
+    rememberMe: true,
   };
   return (
     <Formik
       enableReinitialize
       validationSchema={validationSchema}
-      onSubmit={onSubmit}
+      onSubmit={async (values, { setSubmitting }) => {
+        setSubmitting(true);
+        await onSubmit(values);
+        setSubmitting(false);
+      }}
       initialValues={initialValues}
     >
-      {({ setFieldValue }) => (
+      {({ setFieldValue, isSubmitting }) => (
         <LoginFormikForm>
-          <Typography color={colors.gray[700]} variant='h4' component='h1'>
+          <LoginFormTitle variant='h4' component='h1'>
             {titleText}
-          </Typography>
-          <Divider sx={{ width: '100%' }} />
-          <FormikTextInput
+          </LoginFormTitle>
+          <LoginDivider sx={{ width: '100%' }} />
+          <LoginEmailInput
             autoComplete='username'
             label='E-mail'
             name='email'
             type='email'
           />
-          <FormikPasswordInput label='Senha' name='password' />
+          <LoginPasswordInput label='Senha' name='password' />
           <FormControlLabel
             control={
               <LoginRememberMeCheckbox
@@ -64,7 +70,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onSubmit, titleText }) => {
             label='Lembre-se de mim'
           />
           <LoginSubmitButton variant='contained' fullWidth type='submit'>
-            Entrar
+            {isSubmitting ? <CircularProgress size={24} /> : 'Entrar'}
           </LoginSubmitButton>
         </LoginFormikForm>
       )}
