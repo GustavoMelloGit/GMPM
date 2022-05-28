@@ -8,7 +8,7 @@ export const HomeHeader = styled(Box)`
 
 export const HomeContentGrid = styled(Box)`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(250px, 100%), 1fr));
   grid-gap: 20px;
 `;
 

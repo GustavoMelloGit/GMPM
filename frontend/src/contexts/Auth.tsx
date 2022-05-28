@@ -1,5 +1,4 @@
 import React, { createContext, useCallback, useEffect, useState } from 'react';
-import api from '../service/api';
 import { User } from '../shared/types/User';
 import { PropsChildrenOnly } from '../shared/types/utils';
 import { toast } from 'react-toastify';
@@ -17,17 +16,17 @@ export const authContext = createContext<AuthContextType>(
 const AuthProvider: React.FC<PropsChildrenOnly> = ({ children }) => {
   const [user, setUser] = useState({} as User);
 
-  const handleStoreUser = (user: User, remember: boolean) => {
+  const handleStoreUser = useCallback((user: User, remember: boolean) => {
     if (remember) {
       localStorage.setItem('user', JSON.stringify(user));
     }
     setUser(user);
-  };
+  }, []);
 
-  const handleLogOut = () => {
+  const handleLogOut = useCallback(() => {
     localStorage.removeItem('user');
     setUser({} as User);
-  };
+  }, []);
 
   const handleGetUserData = useCallback(async () => {
     try {
@@ -39,7 +38,7 @@ const AuthProvider: React.FC<PropsChildrenOnly> = ({ children }) => {
     } catch (e: any) {
       toast.error(e.message);
     }
-  }, []);
+  }, [handleStoreUser]);
 
   useEffect(() => {
     handleGetUserData();

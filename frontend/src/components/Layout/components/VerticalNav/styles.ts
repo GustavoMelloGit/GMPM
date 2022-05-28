@@ -2,6 +2,7 @@ import styled, { css } from 'styled-components';
 import { Box } from '@mui/system';
 import colors from '../../../../styles/colors';
 import { Container } from '@mui/material';
+import { mobileWidth } from '../../../../shared/constants';
 
 interface VerticalNavProps {
   drawerIsOpen?: boolean;
@@ -13,10 +14,16 @@ export const VerticalNavContainer = styled(Box)`
   height: 100%;
   width: 100%;
   display: flex;
+  & * {
+    color: white;
+  }
 `;
 
 export const VerticalNavContentContainer = styled(Container)`
   padding-top: 5rem;
+  @media screen and (max-width: ${mobileWidth}px) {
+    padding-top: 1rem;
+  }
 `;
 export const VerticalNavContentWrapper = styled(Box)<VerticalNavProps>`
   width: 100%;
