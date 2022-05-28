@@ -41,7 +41,7 @@ const SiteCard: React.FC<SiteCardProps> = ({ site }) => {
         <SiteCardHeader>
           <Box minWidth={0}>
             <Typography variant='h6' component='p' color='black' noWrap>
-              {site.title}
+              {site.name}
             </Typography>
             <Typography
               variant='body2'
@@ -53,7 +53,7 @@ const SiteCard: React.FC<SiteCardProps> = ({ site }) => {
             </Typography>
           </Box>
           <Button
-            aria-label={`abrir menu ${site.title}`}
+            aria-label={`abrir menu ${site.name}`}
             variant='text'
             onClick={handleToggleMenu}
           >

@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { Typography } from '@mui/material';
 import { HomeContainer, HomeContentGrid, HomeHeader } from './styles';
 import { SearchInput } from '../../components/Inputs';
-import sites from '../../mocks/Sites.json';
 import SiteCard from './components/SiteCard';
 import { Site } from '../../shared/types/Site';
+import api from '../../service/api';
 
 const SitesPage: React.FC = () => {
   const [sitesData, setSitesData] = useState([] as Site[]);
@@ -14,9 +14,17 @@ const SitesPage: React.FC = () => {
     setSearchInputValue(event.target.value);
   };
 
-  useEffect(() => {
-    setSitesData(sites.sites);
+  const getSitesData = async () => {
+    try {
+      const response = await api.get('/sites');
+      setSitesData(response.data);
+    } catch (e: any) {
+      console.log(e.message);
+    }
+  };
 
+  useEffect(() => {
+    getSitesData();
     return () => {
       setSitesData([]);
     };
@@ -25,7 +33,7 @@ const SitesPage: React.FC = () => {
   useEffect(() => {
     const searchTimeout = setTimeout(() => {
       setSitesData(
-        sites.sites.filter((site) =>
+        sitesData.filter((site) =>
           site.name.toLowerCase().includes(searchInputValue.toLowerCase())
         )
       );
@@ -34,7 +42,7 @@ const SitesPage: React.FC = () => {
     return () => {
       clearTimeout(searchTimeout);
     };
-  }, [searchInputValue]);
+  }, [searchInputValue, sitesData]);
 
   return (
     <HomeContainer>

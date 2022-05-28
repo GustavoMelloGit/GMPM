@@ -24,7 +24,13 @@ export default class SitesController {
     try {
       const all = await Site.query().where('user_uuid', userUuid)
 
-      return all
+      return all.map((site) => ({
+        uuid: site.uuid,
+        name: site.name,
+        url: site.url,
+        email: site.email,
+        password: site.password,
+      }))
     } catch (e) {
       return { error: e }
     }

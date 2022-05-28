@@ -2,6 +2,7 @@ import React, { createContext, useCallback, useEffect, useState } from 'react';
 import { User } from '../shared/types/User';
 import { PropsChildrenOnly } from '../shared/types/utils';
 import { toast } from 'react-toastify';
+import { setAuthToken } from '../service/api';
 
 type AuthContextType = {
   user: User;
@@ -20,6 +21,7 @@ const AuthProvider: React.FC<PropsChildrenOnly> = ({ children }) => {
     if (remember) {
       localStorage.setItem('user', JSON.stringify(user));
     }
+    setAuthToken(user.token);
     setUser(user);
   }, []);
 
