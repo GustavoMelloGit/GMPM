@@ -30,20 +30,6 @@ const SitesPage: React.FC = () => {
     };
   }, []);
 
-  useEffect(() => {
-    const searchTimeout = setTimeout(() => {
-      setSitesData(
-        sitesData.filter((site) =>
-          site.name.toLowerCase().includes(searchInputValue.toLowerCase())
-        )
-      );
-    }, 500);
-
-    return () => {
-      clearTimeout(searchTimeout);
-    };
-  }, [searchInputValue, sitesData]);
-
   return (
     <HomeContainer>
       <HomeHeader>
@@ -53,9 +39,13 @@ const SitesPage: React.FC = () => {
         <SearchInput onChange={handleSearchChange} value={searchInputValue} />
       </HomeHeader>
       <HomeContentGrid>
-        {sitesData.map((site, index) => (
-          <SiteCard key={index} site={site} />
-        ))}
+        {sitesData
+          .filter((site) =>
+            site.name.toLowerCase().includes(searchInputValue.toLowerCase())
+          )
+          .map((site, index) => (
+            <SiteCard key={index} site={site} />
+          ))}
       </HomeContentGrid>
     </HomeContainer>
   );
