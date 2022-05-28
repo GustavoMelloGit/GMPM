@@ -30,8 +30,7 @@ export const LoginPageFormContainer = styled(Container)`
   }
 `;
 export const LoginPageAside = styled(Box)`
-  width: 50vw;
-  max-width: 500px;
+  width: 40vw;
   height: 100%;
   background-color: ${colors.gray[700]};
   display: flex;
@@ -42,6 +41,7 @@ export const LoginPageAside = styled(Box)`
 
   svg {
     width: 100%;
+    max-width: 500px;
     height: auto;
   }
   @media screen and (max-width: ${mobileWidth}px) {

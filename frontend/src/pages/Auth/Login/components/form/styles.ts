@@ -1,4 +1,4 @@
-import { styled } from '@mui/system';
+import { styled, css } from '@mui/system';
 import { Form } from 'formik';
 import { Button, Checkbox, Divider, Typography } from '@mui/material';
 import colors from '../../../../../styles/colors';
@@ -48,14 +48,21 @@ export const LoginFormTitle = styled(Typography)<{ component: string }>`
   }
 `;
 
-export const LoginEmailInput = styled(FormikTextInput)`
+const InputStyles = css`
   @media screen and (max-width: ${mobileWidth}px) {
-    color: white;
+    && * {
+      color: white;
+    }
+    fieldset {
+      border-color: white;
+    }
   }
 `;
 
+export const LoginEmailInput = styled(FormikTextInput)`
+  ${() => InputStyles}
+`;
+
 export const LoginPasswordInput = styled(FormikPasswordInput)`
-  @media screen and (max-width: ${mobileWidth}px) {
-    color: white;
-  }
+  ${() => InputStyles}
 `;

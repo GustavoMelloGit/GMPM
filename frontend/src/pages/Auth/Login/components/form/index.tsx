@@ -27,7 +27,10 @@ const LoginForm: React.FC<LoginFormProps> = ({ onSubmit, titleText }) => {
       .string()
       .email('Digite um e-mail válido')
       .required('Digite um e-mail'),
-    password: yup.string().required('Digite sua senha'),
+    password: yup
+      .string()
+      .required('Digite sua senha')
+      .min(6, 'Senha muito curta'),
   });
 
   const initialValues: LoginFormValues = {
