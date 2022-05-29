@@ -31,8 +31,8 @@ const UpdateSite: React.FC<UpdateSiteProps> = ({
   return (
     <SiteForm
       initialValues={{ email, name, password, url }}
-      submitText='Criar'
-      titleText='Criar novo site'
+      submitText='Salvar'
+      titleText={`Editar ${name}`}
       modalIsOpen={modalState}
       handleCloseModal={toggleModal}
       onSubmit={handleUpdateSite}

@@ -70,7 +70,7 @@ const SiteForm: React.FC<SiteFormProps> = ({
         >
           {() => (
             <ModalForm>
-              <Typography variant='h4' component='h1'>
+              <Typography variant='h4' component='h1' noWrap>
                 {titleText}
               </Typography>
               <Divider />

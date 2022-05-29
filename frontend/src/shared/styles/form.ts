@@ -15,6 +15,9 @@ export const ModalForm = styled(Form)`
   background-color: white;
   padding: 1.5rem;
   border-radius: 8px;
+  width: 50%;
+  max-width: 600px;
+  min-width: 300px;
   > *:not(:last-child) {
     margin-bottom: 1rem;
   }
@@ -23,4 +26,7 @@ export const ModalForm = styled(Form)`
 export const ModalFormActionsContainer = styled(Box)`
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  flex-wrap: wrap;
 `;

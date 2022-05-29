@@ -17,6 +17,8 @@ import {
   SiteCardMenu,
 } from './styles';
 import { Site } from '../../../../../shared/types/Site';
+import { isValidUrl } from '../../../../../shared/utils/validators';
+import { formatToValidUrl } from '../../../../../shared/utils/formatters';
 
 //Icons
 import LogoutIcon from '@mui/icons-material/Logout';
@@ -39,6 +41,15 @@ const SiteCard: React.FC<SiteCardProps> = ({
 
   const handleToggleMenu = (event: React.MouseEvent<HTMLButtonElement>) => {
     setMenuIsOpen(event.currentTarget);
+  };
+
+  const handleOpenLinkOnNewTab = (url: string) => {
+    if (isValidUrl(url)) {
+      window.open(url, '_blank');
+    } else {
+      const formattedUrl = formatToValidUrl(url);
+      window.open(formattedUrl, '_blank');
+    }
   };
 
   return (
@@ -90,7 +101,9 @@ const SiteCard: React.FC<SiteCardProps> = ({
         <Divider />
         <SiteCardContentWrapper>
           <DataFields site={site} />
-          <SiteCardGoToWebsite href={site.url}>
+          <SiteCardGoToWebsite
+            onClick={handleOpenLinkOnNewTab.bind(this, site.url)}
+          >
             <LogoutIcon className='icon' />
             Abrir no navegador
           </SiteCardGoToWebsite>
