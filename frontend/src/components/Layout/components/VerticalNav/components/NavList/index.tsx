@@ -15,14 +15,13 @@ const NavList: React.FC = (props) => {
           const active = item.url === location.pathname;
 
           return (
-            <ListItem disablePadding>
+            <ListItem disablePadding key={item.id}>
               <NavListItemButton
-                key={item.id}
                 onClick={() => navigate(item.url)}
                 selected={active}
               >
                 {item.icon && <NavListIcon>{item.icon}</NavListIcon>}
-                <NavListText primary={item.title} $active={active} />
+                <NavListText primary={item.title} />
               </NavListItemButton>
             </ListItem>
           );

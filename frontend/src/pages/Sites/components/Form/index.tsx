@@ -38,7 +38,13 @@ const SiteForm: React.FC<SiteFormProps> = ({
 }) => {
   const validationSchema = yup.object().shape({
     name: yup.string().required('Digite o nome do site'),
-    url: yup.string().required('Digite a url do site'),
+    url: yup
+      .string()
+      .matches(
+        /((https?):\/\/)?(www.)?[a-z0-9]+(\.[a-z]{2,}){1,3}(#?\/?[a-zA-Z0-9#]+)*\/?(\?[a-zA-Z0-9-_]+=[a-zA-Z0-9-%]+&?)?$/,
+        'Digite uma URL válida'
+      )
+      .required('Digite a url do site'),
     email: yup
       .string()
       .email('Digite um e-mail válido')
@@ -69,7 +75,7 @@ const SiteForm: React.FC<SiteFormProps> = ({
               </Typography>
               <Divider />
               <FormikTextInput name='name' label='Nome' />
-              <FormikTextInput name='url' label='Url' />
+              <FormikTextInput name='url' label='URL' />
               <FormikTextInput name='email' label='E-mail' />
               <FormikPasswordInput name='password' label='Senha' />
               <ModalFormActionsContainer>

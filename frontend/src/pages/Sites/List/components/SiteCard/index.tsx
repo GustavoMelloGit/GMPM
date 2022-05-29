@@ -26,9 +26,15 @@ import DataFields from './components/DataFields';
 
 interface SiteCardProps {
   site: Site;
+  handleDeleteSite: (site: Site) => void;
+  handleEditSite: (site: Site) => void;
 }
 
-const SiteCard: React.FC<SiteCardProps> = ({ site }) => {
+const SiteCard: React.FC<SiteCardProps> = ({
+  site,
+  handleDeleteSite,
+  handleEditSite,
+}) => {
   const [menuIsOpen, setMenuIsOpen] = useState<null | HTMLElement>(null);
 
   const handleToggleMenu = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -67,13 +73,13 @@ const SiteCard: React.FC<SiteCardProps> = ({ site }) => {
               'aria-labelledby': 'site-card-menu',
             }}
           >
-            <MenuItem>
+            <MenuItem onClick={handleEditSite.bind(this, site)}>
               <ListItemIcon>
                 <EditIcon />
               </ListItemIcon>
               <ListItemText>Editar</ListItemText>
             </MenuItem>
-            <MenuItem>
+            <MenuItem onClick={handleDeleteSite.bind(this, site)}>
               <ListItemIcon>
                 <DeleteIcon />
               </ListItemIcon>

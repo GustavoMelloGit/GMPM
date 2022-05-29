@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Box, Button, Typography } from '@mui/material';
+import { Button, Typography } from '@mui/material';
 import {
   HomeActionContainer,
   HomeContainer,
@@ -12,11 +12,14 @@ import { Site } from '../../../shared/types/Site';
 import api from '../../../service/api';
 import CreateSite from '../Create';
 import AddIcon from '@mui/icons-material/Add';
+import LoaderComponent from '../../../components/Loader';
 
 const SitesPage: React.FC = () => {
   const [sitesData, setSitesData] = useState([] as Site[]);
+  const [searchedSites, setSearchedSites] = useState([] as Site[]);
   const [searchInputValue, setSearchInputValue] = useState('');
   const [createSiteModal, setCreateSiteModal] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchInputValue(event.target.value);
@@ -27,13 +30,26 @@ const SitesPage: React.FC = () => {
   };
 
   const getSitesData = async () => {
+    setIsLoading(true);
     try {
       const response = await api.get('/sites');
       setSitesData(response.data);
     } catch (e: any) {
       console.log(e.message);
     }
+    setIsLoading(false);
   };
+
+  const handleDeleteSite = async (site: Site) => {
+    try {
+      await api.delete(`/sites/${site.uuid}`);
+      getSitesData();
+    } catch (e: any) {
+      console.log(e.message);
+    }
+  };
+
+  const handleEditSite = async (site: Site) => {};
 
   useEffect(() => {
     getSitesData();
@@ -42,11 +58,25 @@ const SitesPage: React.FC = () => {
     };
   }, []);
 
+  useEffect(() => {
+    const filterTimeout = setTimeout(() => {
+      const filteredSites = sitesData.filter((site) => {
+        return site.name.toLowerCase().includes(searchInputValue.toLowerCase());
+      });
+      setSearchedSites(filteredSites);
+    }, 500);
+
+    return () => {
+      clearTimeout(filterTimeout);
+    };
+  }, [searchInputValue, sitesData]);
+
   return (
     <>
       <CreateSite
         modalState={createSiteModal}
         toggleModal={handleToggleCreateModal}
+        updateData={getSitesData}
       />
       <HomeContainer>
         <HomeHeader>
@@ -68,15 +98,24 @@ const SitesPage: React.FC = () => {
           </HomeActionContainer>
         </HomeHeader>
 
-        <HomeContentGrid>
-          {sitesData
-            .filter((site) =>
-              site.name.toLowerCase().includes(searchInputValue.toLowerCase())
-            )
-            .map((site, index) => (
-              <SiteCard key={index} site={site} />
+        {isLoading ? (
+          <LoaderComponent />
+        ) : searchedSites.length > 0 ? (
+          <HomeContentGrid>
+            {searchedSites.map((site, index) => (
+              <SiteCard
+                key={index}
+                site={site}
+                handleDeleteSite={handleDeleteSite}
+                handleEditSite={handleEditSite}
+              />
             ))}
-        </HomeContentGrid>
+          </HomeContentGrid>
+        ) : (
+          <Typography variant='overline' component='h2' textAlign='center'>
+            Nenhum site encontrado
+          </Typography>
+        )}
       </HomeContainer>
     </>
   );

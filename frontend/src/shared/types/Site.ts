@@ -3,4 +3,5 @@ export interface Site {
   email: string;
   password: string;
   name: string;
+  uuid: string;
 }

@@ -5,15 +5,21 @@ import SiteForm, { SiteFormValues } from '../components/Form';
 interface CreateSiteProps {
   toggleModal: () => void;
   modalState: boolean;
+  updateData: () => Promise<void>;
 }
-const CreateSite: React.FC<CreateSiteProps> = ({ toggleModal, modalState }) => {
+const CreateSite: React.FC<CreateSiteProps> = ({
+  toggleModal,
+  modalState,
+  updateData,
+}) => {
   const handleCreateSite = async (values: SiteFormValues) => {
     try {
-      const response = await api.post('/sites', values);
-      console.log(response.data);
+      await api.post('/sites', values);
     } catch (e: any) {
       console.log(e.message);
     }
+    toggleModal();
+    updateData();
   };
   return (
     <SiteForm
