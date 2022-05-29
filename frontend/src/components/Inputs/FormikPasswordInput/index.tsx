@@ -15,12 +15,14 @@ export interface FormikPasswordInputProps extends BaseTextFieldProps {
   [key: string]: unknown;
   value?: string | number;
   containerStyles?: React.CSSProperties;
+  iconButtonStyles?: React.CSSProperties;
 }
 
 const FormikPasswordInput: React.FC<FormikPasswordInputProps> = ({
   name,
   variant = 'outlined',
   containerStyles,
+  iconButtonStyles,
   ...rest
 }) => {
   const [showText, setShowText] = useState(false);
@@ -55,9 +57,13 @@ const FormikPasswordInput: React.FC<FormikPasswordInputProps> = ({
               edge='end'
             >
               {showText ? (
-                <Visibility sx={{ fill: colors.gray[700] }} />
+                <Visibility
+                  sx={{ ...iconButtonStyles, fill: colors.gray[600] }}
+                />
               ) : (
-                <VisibilityOff sx={{ fill: colors.gray[700] }} />
+                <VisibilityOff
+                  sx={{ ...iconButtonStyles, fill: colors.gray[600] }}
+                />
               )}
             </IconButton>
           </InputAdornment>

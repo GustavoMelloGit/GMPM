@@ -52,6 +52,7 @@ const InputStyles = css`
   @media screen and (max-width: ${mobileWidth}px) {
     && * {
       color: white;
+      fill: white;
     }
     fieldset {
       border-color: white;
