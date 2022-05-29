@@ -1,6 +1,8 @@
-import { styled, Container } from '@mui/material';
+import { styled, Container, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import { Form } from 'formik';
+import colors from '../../styles/colors';
+import { mobileWidth } from '../constants';
 
 export const ModalFormContainer = styled(Container)`
   display: flex;
@@ -29,4 +31,28 @@ export const ModalFormActionsContainer = styled(Box)`
   align-items: center;
   width: 100%;
   flex-wrap: wrap;
+`;
+
+export const PageForm = styled(Form)`
+  width: 100%;
+  span {
+    color: ${colors.gray[700]};
+  }
+  > *:not(:last-child) {
+    margin-bottom: 1rem;
+  }
+
+  @media screen and (max-width: ${mobileWidth}px) {
+    span {
+      color: white;
+    }
+  }
+`;
+
+export const PageFormTitle = styled(Typography)<{ component: string }>`
+  color: ${colors.gray[700]};
+  font-weight: bold;
+  @media screen and (max-width: ${mobileWidth}px) {
+    color: white;
+  }
 `;

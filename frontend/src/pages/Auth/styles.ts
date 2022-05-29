@@ -1,7 +1,7 @@
-import { mobileWidth } from './../../../shared/constants';
+import { mobileWidth } from '../../shared/constants';
 import { Container } from '@mui/material';
 import { Box, styled } from '@mui/system';
-import colors from '../../../styles/colors';
+import colors from '../../styles/colors';
 
 export const LoginPageContainer = styled(Box)`
   height: 100%;
@@ -24,9 +24,14 @@ export const LoginPageFormContainer = styled(Container)`
   justify-content: center;
   align-items: center;
 
+  > *:not(:last-child) {
+    margin-bottom: 1rem;
+  }
+
   @media screen and (max-width: ${mobileWidth}px) {
     width: 100vw;
     height: fit-content;
+    color: white;
   }
 `;
 export const LoginPageAside = styled(Box)`

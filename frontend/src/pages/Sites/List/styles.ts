@@ -15,6 +15,7 @@ export const HomeContentGrid = styled(Box)`
 `;
 
 export const HomeContainer = styled(Box)`
+  color: white;
   > *:not(:last-child) {
     margin-bottom: 4rem;
   }

@@ -2,7 +2,6 @@ import React, { createContext, useCallback, useEffect, useState } from 'react';
 import { User } from '../shared/types/User';
 import { PropsChildrenOnly } from '../shared/types/utils';
 import { setAuthToken } from '../service/api';
-import toast from 'react-hot-toast';
 
 type AuthContextType = {
   user: User;

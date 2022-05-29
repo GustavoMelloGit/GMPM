@@ -2,15 +2,13 @@ import React from 'react';
 import { Formik } from 'formik';
 import * as yup from 'yup';
 import {
-  LoginDivider,
   LoginEmailInput,
-  LoginFormikForm,
-  LoginFormTitle,
   LoginPasswordInput,
   LoginRememberMeCheckbox,
-  LoginSubmitButton,
 } from './styles';
 import { CircularProgress, FormControlLabel } from '@mui/material';
+import { PageForm, PageFormTitle } from '../../../../shared/styles/form';
+import { AuthPageDivider, AuthSubmitButton } from '../styles';
 
 export interface LoginFormValues {
   email: string;
@@ -50,11 +48,11 @@ const LoginForm: React.FC<LoginFormProps> = ({ onSubmit, titleText }) => {
       initialValues={initialValues}
     >
       {({ setFieldValue, isSubmitting, values }) => (
-        <LoginFormikForm>
-          <LoginFormTitle variant='h4' component='h1'>
+        <PageForm>
+          <PageFormTitle variant='h4' component='h1'>
             {titleText}
-          </LoginFormTitle>
-          <LoginDivider sx={{ width: '100%' }} />
+          </PageFormTitle>
+          <AuthPageDivider />
           <LoginEmailInput
             autoComplete='username'
             label='E-mail'
@@ -73,10 +71,10 @@ const LoginForm: React.FC<LoginFormProps> = ({ onSubmit, titleText }) => {
             }
             label='Lembre-se de mim'
           />
-          <LoginSubmitButton variant='contained' fullWidth type='submit'>
+          <AuthSubmitButton variant='contained' fullWidth type='submit'>
             {isSubmitting ? <CircularProgress size={24} /> : 'Entrar'}
-          </LoginSubmitButton>
-        </LoginFormikForm>
+          </AuthSubmitButton>
+        </PageForm>
       )}
     </Formik>
   );

@@ -5,7 +5,7 @@ import { AppURLs } from '../../shared/constants';
 const authRoutes: RouteConfigProps[] = [
   {
     path: AppURLs.LOGIN,
-    component: lazy(() => import('./Login')),
+    component: lazy(() => import('.')),
     exact: true,
   },
 ];

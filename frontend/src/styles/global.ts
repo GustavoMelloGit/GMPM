@@ -17,6 +17,9 @@ const GlobalStyle = createGlobalStyle`
         background-color: ${colors.gray[700]};
         width: 100%;
     }
+    a{
+        cursor: pointer;
+    }
     #root{
         height: 100%;
         width: 100%;
