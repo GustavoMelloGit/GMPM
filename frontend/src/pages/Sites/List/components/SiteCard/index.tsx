@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Site } from '../../../../shared/types/Site';
 import {
   Card,
   Box,
@@ -17,6 +16,7 @@ import {
   SiteCardGoToWebsite,
   SiteCardMenu,
 } from './styles';
+import { Site } from '../../../../../shared/types/Site';
 
 //Icons
 import LogoutIcon from '@mui/icons-material/Logout';

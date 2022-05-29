@@ -1,16 +1,22 @@
 import React, { useEffect, useState } from 'react';
-import { Typography } from '@mui/material';
-import { HomeContainer, HomeContentGrid, HomeHeader } from './styles';
+import { Box, Button, Typography } from '@mui/material';
+import {
+  HomeActionContainer,
+  HomeContainer,
+  HomeContentGrid,
+  HomeHeader,
+} from './styles';
 import { SearchInput } from '../../../components/Inputs';
-import SiteCard from '../components/SiteCard';
+import SiteCard from './components/SiteCard';
 import { Site } from '../../../shared/types/Site';
 import api from '../../../service/api';
 import CreateSite from '../Create';
+import AddIcon from '@mui/icons-material/Add';
 
 const SitesPage: React.FC = () => {
   const [sitesData, setSitesData] = useState([] as Site[]);
   const [searchInputValue, setSearchInputValue] = useState('');
-  const [createSiteModal, setCreateSiteModal] = useState(true);
+  const [createSiteModal, setCreateSiteModal] = useState(false);
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchInputValue(event.target.value);
@@ -47,8 +53,21 @@ const SitesPage: React.FC = () => {
           <Typography variant='h2' component='h1'>
             Sites
           </Typography>
-          <SearchInput onChange={handleSearchChange} value={searchInputValue} />
+          <HomeActionContainer>
+            <SearchInput
+              onChange={handleSearchChange}
+              value={searchInputValue}
+            />
+            <Button
+              color='inherit'
+              aria-label='Adicionar site'
+              onClick={handleToggleCreateModal}
+            >
+              <AddIcon />
+            </Button>
+          </HomeActionContainer>
         </HomeHeader>
+
         <HomeContentGrid>
           {sitesData
             .filter((site) =>

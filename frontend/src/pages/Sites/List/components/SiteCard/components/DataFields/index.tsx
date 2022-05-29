@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { IconButton, InputAdornment, TextField } from '@mui/material';
-import { Site } from '../../../../../../shared/types/Site';
+import { Site } from '../../../../../../../shared/types/Site';
 import { DataFieldsWrapper } from './styles';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import VisibilityIcon from '@mui/icons-material/Visibility';
