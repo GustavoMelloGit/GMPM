@@ -40,7 +40,7 @@ const VerticalNavbar: React.FC<PropsChildrenOnly> = ({ children }) => {
             </IconButton>
           </MobileHeader>
         )}
-        <ProfileContainer>
+        <ProfileContainer component='header'>
           <Avatar
             variant='rounded'
             sx={{

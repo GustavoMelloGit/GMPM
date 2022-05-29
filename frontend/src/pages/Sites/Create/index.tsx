@@ -1,4 +1,5 @@
 import React from 'react';
+import toast from 'react-hot-toast';
 import api from '../../../service/api';
 import SiteForm, { SiteFormValues } from '../components/Form';
 
@@ -16,7 +17,7 @@ const CreateSite: React.FC<CreateSiteProps> = ({
     try {
       await api.post('/sites', values);
     } catch (e: any) {
-      console.log(e.message);
+      toast.error(e.message);
     }
     toggleModal();
     updateData();

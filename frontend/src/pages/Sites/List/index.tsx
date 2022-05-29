@@ -42,7 +42,6 @@ const SitesPage: React.FC = () => {
     try {
       const response = await api.get('/sites');
       setSitesData(response.data);
-      toast.error(response.status.toString());
     } catch (e: any) {
       toast.error(e.message);
     }
@@ -54,7 +53,7 @@ const SitesPage: React.FC = () => {
       await api.delete(`/sites/${site.uuid}`);
       getSitesData();
     } catch (e: any) {
-      console.log(e.message);
+      toast.error(e.message);
     }
   };
 

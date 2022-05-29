@@ -7,10 +7,15 @@ const ToasterComponent: React.FC = () => {
     <Toaster
       position='top-right'
       toastOptions={{
-        duration: 10000,
+        duration: 2000,
         style: {
-          backgroundColor: colors.gray[600],
-          color: '#e91919',
+          backgroundColor: '#fff',
+          color: 'black',
+        },
+        error: {
+          style: {
+            color: colors.orange[900],
+          },
         },
       }}
     />

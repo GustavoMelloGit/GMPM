@@ -1,4 +1,5 @@
 import React from 'react';
+import toast from 'react-hot-toast';
 import api from '../../../service/api';
 import { Site } from '../../../shared/types/Site';
 import SiteForm, { SiteFormValues } from '../components/Form';
@@ -22,7 +23,7 @@ const UpdateSite: React.FC<UpdateSiteProps> = ({
     try {
       await api.put(`/sites/${uuid}`, values);
     } catch (e: any) {
-      console.log(e.message);
+      toast.error(e.message);
     }
     toggleModal();
     updateData();

@@ -13,6 +13,7 @@ import api from '../../../service/api';
 import { authContext } from '../../../contexts/Auth';
 import { Navigate } from 'react-router-dom';
 import { AppURLs } from '../../../shared/constants';
+import toast from 'react-hot-toast';
 
 const LoginPage: React.FC = () => {
   const { login, user } = useContext(authContext);
@@ -25,8 +26,8 @@ const LoginPage: React.FC = () => {
     try {
       const response = await api.post('/login', values);
       login(response.data, values.rememberMe);
-    } catch (e) {
-      console.log(e);
+    } catch (e: any) {
+      toast.error(e);
     }
   };
 
