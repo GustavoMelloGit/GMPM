@@ -43,7 +43,7 @@ const SitesPage: React.FC = () => {
       const response = await api.get('/sites');
       setSitesData(response.data);
     } catch (e: any) {
-      toast.error(e.message);
+      toast.error('Erro ao buscar sites');
     }
     setIsLoading(false);
   };
@@ -53,7 +53,7 @@ const SitesPage: React.FC = () => {
       await api.delete(`/sites/${site.uuid}`);
       getSitesData();
     } catch (e: any) {
-      toast.error(e.message);
+      toast.error('Erro ao deletar site');
     }
   };
 

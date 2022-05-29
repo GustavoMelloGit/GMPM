@@ -27,7 +27,7 @@ const LoginPage: React.FC = () => {
       const response = await api.post('/login', values);
       login(response.data, values.rememberMe);
     } catch (e: any) {
-      toast.error(e);
+      toast.error('E-mail e/ou senha inválidos');
     }
   };
 

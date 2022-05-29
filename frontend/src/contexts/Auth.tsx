@@ -30,15 +30,11 @@ const AuthProvider: React.FC<PropsChildrenOnly> = ({ children }) => {
     setUser({} as User);
   }, []);
 
-  const handleGetUserData = useCallback(async () => {
-    try {
-      const localUser = localStorage.getItem('user');
-      if (localUser) {
-        const user = JSON.parse(localUser);
-        handleStoreUser(user, true);
-      }
-    } catch (e: any) {
-      toast.error(e.message);
+  const handleGetUserData = useCallback(() => {
+    const localUser = localStorage.getItem('user');
+    if (localUser) {
+      const user = JSON.parse(localUser);
+      handleStoreUser(user, true);
     }
   }, [handleStoreUser]);
 

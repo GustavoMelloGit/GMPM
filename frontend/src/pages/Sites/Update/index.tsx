@@ -23,7 +23,7 @@ const UpdateSite: React.FC<UpdateSiteProps> = ({
     try {
       await api.put(`/sites/${uuid}`, values);
     } catch (e: any) {
-      toast.error(e.message);
+      toast.error('Erro ao atualizar site');
     }
     toggleModal();
     updateData();

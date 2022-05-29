@@ -16,7 +16,6 @@ import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 import { LayoutContext } from '../../../../contexts/layout';
 import { authContext } from '../../../../contexts/Auth';
-import ToasterComponent from '../../../Toaster';
 
 const VerticalNavbar: React.FC<PropsChildrenOnly> = ({ children }) => {
   const { isMobile, toggleDrawer, drawerIsOpen } = useContext(LayoutContext);
@@ -72,7 +71,6 @@ const VerticalNavbar: React.FC<PropsChildrenOnly> = ({ children }) => {
               </Button>
             </MobileHeader>
           )}
-          <ToasterComponent />
           {children}
         </VerticalNavContentContainer>
       </VerticalNavContentWrapper>

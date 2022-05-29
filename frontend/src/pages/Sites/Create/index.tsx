@@ -17,7 +17,7 @@ const CreateSite: React.FC<CreateSiteProps> = ({
     try {
       await api.post('/sites', values);
     } catch (e: any) {
-      toast.error(e.message);
+      toast.error('Erro ao criar site');
     }
     toggleModal();
     updateData();
