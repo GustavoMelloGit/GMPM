@@ -1,35 +1,42 @@
 import React from 'react';
 import api from '../../../service/api';
+import { Site } from '../../../shared/types/Site';
 import SiteForm, { SiteFormValues } from '../components/Form';
 
-interface CreateSiteProps {
+interface UpdateSiteProps {
   toggleModal: () => void;
   modalState: boolean;
   updateData: () => Promise<void>;
+  site: Site;
 }
-const CreateSite: React.FC<CreateSiteProps> = ({
+
+const UpdateSite: React.FC<UpdateSiteProps> = ({
   toggleModal,
   modalState,
   updateData,
+  site,
 }) => {
-  const handleCreateSite = async (values: SiteFormValues) => {
+  const { email, name, password, url, uuid } = site;
+
+  const handleUpdateSite = async (values: SiteFormValues) => {
     try {
-      await api.post('/sites', values);
+      await api.put(`/sites/${uuid}`, values);
     } catch (e: any) {
       console.log(e.message);
     }
     toggleModal();
     updateData();
   };
+
   return (
     <SiteForm
-      initialValues={{ email: '', name: '', password: '', url: '' }}
+      initialValues={{ email, name, password, url }}
       submitText='Criar'
       titleText='Criar novo site'
       modalIsOpen={modalState}
       handleCloseModal={toggleModal}
-      onSubmit={handleCreateSite}
+      onSubmit={handleUpdateSite}
     />
   );
 };
-export default React.memo(CreateSite);
+export default React.memo(UpdateSite);

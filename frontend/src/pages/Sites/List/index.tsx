@@ -13,12 +13,15 @@ import api from '../../../service/api';
 import CreateSite from '../Create';
 import AddIcon from '@mui/icons-material/Add';
 import LoaderComponent from '../../../components/Loader';
+import UpdateSite from '../Update';
 
 const SitesPage: React.FC = () => {
   const [sitesData, setSitesData] = useState([] as Site[]);
   const [searchedSites, setSearchedSites] = useState([] as Site[]);
+  const [selectedSite, setSelectedSite] = useState({} as Site);
   const [searchInputValue, setSearchInputValue] = useState('');
   const [createSiteModal, setCreateSiteModal] = useState(false);
+  const [updateSiteModal, setUpdateSiteModal] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -27,6 +30,10 @@ const SitesPage: React.FC = () => {
 
   const handleToggleCreateModal = () => {
     setCreateSiteModal((prevState) => !prevState);
+  };
+
+  const handleToggleUpdateModal = () => {
+    setUpdateSiteModal((prevState) => !prevState);
   };
 
   const getSitesData = async () => {
@@ -49,7 +56,10 @@ const SitesPage: React.FC = () => {
     }
   };
 
-  const handleEditSite = async (site: Site) => {};
+  const handleEditSite = async (site: Site) => {
+    setSelectedSite(site);
+    handleToggleUpdateModal();
+  };
 
   useEffect(() => {
     getSitesData();
@@ -77,6 +87,12 @@ const SitesPage: React.FC = () => {
         modalState={createSiteModal}
         toggleModal={handleToggleCreateModal}
         updateData={getSitesData}
+      />
+      <UpdateSite
+        modalState={updateSiteModal}
+        toggleModal={handleToggleUpdateModal}
+        updateData={getSitesData}
+        site={selectedSite}
       />
       <HomeContainer>
         <HomeHeader>
