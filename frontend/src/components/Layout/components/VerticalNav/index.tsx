@@ -24,9 +24,13 @@ const VerticalNavbar: React.FC<PropsChildrenOnly> = ({ children }) => {
 
   return (
     <VerticalNavContainer>
-      <AppDrawer drawerIsOpen={drawerIsOpen} isMobile={isMobile}>
+      <AppDrawer
+        component='aside'
+        drawerIsOpen={drawerIsOpen}
+        isMobile={isMobile}
+      >
         {isMobile && drawerIsOpen && (
-          <MobileHeader>
+          <MobileHeader component='header'>
             <IconButton
               aria-label='fecha o menu de navegação'
               onClick={toggleDrawer}
@@ -59,7 +63,7 @@ const VerticalNavbar: React.FC<PropsChildrenOnly> = ({ children }) => {
         </ProfileContainer>
         <NavList />
       </AppDrawer>
-      <VerticalNavContentWrapper isMobile={isMobile}>
+      <VerticalNavContentWrapper component='section' isMobile={isMobile}>
         <VerticalNavContentContainer>
           {isMobile && (
             <MobileHeader>
