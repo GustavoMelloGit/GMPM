@@ -13,7 +13,7 @@ export const sitesNavItem: NavItemProps = {
 const sitesRoutes: RouteConfigProps[] = [
   {
     path: AppURLs.SITES,
-    component: lazy(() => import('.')),
+    component: lazy(() => import('./List')),
     exact: true,
   },
 ];
