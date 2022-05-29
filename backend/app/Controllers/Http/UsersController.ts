@@ -2,9 +2,13 @@ import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import User from 'App/Models/User'
 
 export default class UsersController {
-  public async create({ request }: HttpContextContract) {
+  public async create({ request, response }: HttpContextContract) {
     const { name, email, password } = request.only(['name', 'email', 'password'])
     try {
+      const emailExists = await User.findBy('email', email)
+      if (emailExists) {
+        return response.status(400).send('Email já existe')
+      }
       const user = await User.create({
         name,
         email,
