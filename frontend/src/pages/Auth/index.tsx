@@ -40,8 +40,8 @@ const LoginPage: React.FC = () => {
 
   const handleSignup = async (values: SignupFormValues) => {
     try {
-      const response = await api.post('/users', values);
-      login(response.data, true);
+      await api.post('/users', values);
+      setIsRegistering(false);
       toast.success('Usuário criado com sucesso!');
     } catch (e: any) {
       toast.error('E-mail já cadastrado');
