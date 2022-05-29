@@ -5,6 +5,7 @@ export const HomeHeader = styled(Box)`
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   justify-content: space-between;
   align-items: center;
+  color: white;
 `;
 
 export const HomeContentGrid = styled(Box)`

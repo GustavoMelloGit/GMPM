@@ -4,10 +4,7 @@ import { TextField } from '@mui/material';
 export const SearchInputStyled = styled(TextField)`
   border-bottom: 1px solid #fff !important;
   color: #fff !important;
-  label {
-    color: #fff;
-  }
-  input {
+  && * {
     color: #fff;
   }
 `;

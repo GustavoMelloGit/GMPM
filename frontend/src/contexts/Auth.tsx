@@ -1,7 +1,6 @@
 import React, { createContext, useCallback, useEffect, useState } from 'react';
 import { User } from '../shared/types/User';
 import { PropsChildrenOnly } from '../shared/types/utils';
-import { toast } from 'react-toastify';
 import { setAuthToken } from '../service/api';
 
 type AuthContextType = {
@@ -38,7 +37,7 @@ const AuthProvider: React.FC<PropsChildrenOnly> = ({ children }) => {
         handleStoreUser(user, true);
       }
     } catch (e: any) {
-      toast.error(e.message);
+      console.log(e.message);
     }
   }, [handleStoreUser]);
 

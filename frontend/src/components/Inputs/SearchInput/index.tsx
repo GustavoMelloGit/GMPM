@@ -8,7 +8,7 @@ const SearchInput: React.FC<TextFieldProps> = ({ ...rest }) => {
     <SearchInputStyled
       variant='standard'
       InputProps={{
-        endAdornment: <SearchOutlined fill='#fff' />,
+        endAdornment: <SearchOutlined />,
       }}
       label='Pesquisar'
       {...rest}

@@ -14,6 +14,7 @@ import CreateSite from '../Create';
 import AddIcon from '@mui/icons-material/Add';
 import LoaderComponent from '../../../components/Loader';
 import UpdateSite from '../Update';
+import toast from 'react-hot-toast';
 
 const SitesPage: React.FC = () => {
   const [sitesData, setSitesData] = useState([] as Site[]);
@@ -41,8 +42,9 @@ const SitesPage: React.FC = () => {
     try {
       const response = await api.get('/sites');
       setSitesData(response.data);
+      toast.error(response.status.toString());
     } catch (e: any) {
-      console.log(e.message);
+      toast.error(e.message);
     }
     setIsLoading(false);
   };

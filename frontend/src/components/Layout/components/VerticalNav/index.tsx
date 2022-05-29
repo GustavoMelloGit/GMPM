@@ -1,9 +1,10 @@
 import React, { useContext } from 'react';
-import { Avatar, Box, Typography, Button, IconButton } from '@mui/material';
+import { Avatar, Typography, Button, IconButton } from '@mui/material';
 import {
   AppDrawer,
   MobileHeader,
   ProfileContainer,
+  UserInfoContainer,
   VerticalNavContainer,
   VerticalNavContentContainer,
   VerticalNavContentWrapper,
@@ -15,6 +16,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 import { LayoutContext } from '../../../../contexts/layout';
 import { authContext } from '../../../../contexts/Auth';
+import ToasterComponent from '../../../Toaster';
 
 const VerticalNavbar: React.FC<PropsChildrenOnly> = ({ children }) => {
   const { isMobile, toggleDrawer, drawerIsOpen } = useContext(LayoutContext);
@@ -46,14 +48,14 @@ const VerticalNavbar: React.FC<PropsChildrenOnly> = ({ children }) => {
           >
             {user.name[0].toUpperCase()}
           </Avatar>
-          <Box ml={1} minWidth={0}>
+          <UserInfoContainer>
             <Typography fontWeight={700} noWrap>
               {user.name}
             </Typography>
             <Typography fontSize={13} fontWeight={500} noWrap>
               {user.email}
             </Typography>
-          </Box>
+          </UserInfoContainer>
         </ProfileContainer>
         <NavList />
       </AppDrawer>
@@ -66,6 +68,7 @@ const VerticalNavbar: React.FC<PropsChildrenOnly> = ({ children }) => {
               </Button>
             </MobileHeader>
           )}
+          <ToasterComponent />
           {children}
         </VerticalNavContentContainer>
       </VerticalNavContentWrapper>

@@ -14,9 +14,12 @@ export const VerticalNavContainer = styled(Box)`
   height: 100%;
   width: 100%;
   display: flex;
-  & * {
-    color: white;
-  }
+`;
+
+export const UserInfoContainer = styled(Box)`
+  margin-left: 10px;
+  color: white;
+  min-width: 0;
 `;
 
 export const VerticalNavContentContainer = styled(Container)`

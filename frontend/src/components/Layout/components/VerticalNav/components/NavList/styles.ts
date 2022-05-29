@@ -7,6 +7,9 @@ export const NavListIcon = styled(ListItemIcon)``;
 export const NavListText = styled(ListItemText)``;
 
 export const NavListItemButton = styled(ListItemButton)`
+  > * {
+    color: white;
+  }
   ${({ selected }) => {
     if (selected) {
       return css`
