@@ -8,6 +8,7 @@ import {
   MenuItem,
   ListItemIcon,
   ListItemText,
+  IconButton,
 } from '@mui/material';
 import {
   SiteCardContentWrapper,
@@ -69,13 +70,12 @@ const SiteCard: React.FC<SiteCardProps> = ({
               {site.url}
             </Typography>
           </Box>
-          <Button
+          <IconButton
             aria-label={`abrir menu ${site.name}`}
-            variant='text'
             onClick={handleToggleMenu}
           >
             <SiteCardMenuIcon />
-          </Button>
+          </IconButton>
           <SiteCardMenu
             anchorEl={menuIsOpen}
             open={Boolean(menuIsOpen)}

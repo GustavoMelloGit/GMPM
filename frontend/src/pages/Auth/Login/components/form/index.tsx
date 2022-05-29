@@ -49,7 +49,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onSubmit, titleText }) => {
       }}
       initialValues={initialValues}
     >
-      {({ setFieldValue, isSubmitting }) => (
+      {({ setFieldValue, isSubmitting, values }) => (
         <LoginFormikForm>
           <LoginFormTitle variant='h4' component='h1'>
             {titleText}
@@ -65,6 +65,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onSubmit, titleText }) => {
           <FormControlLabel
             control={
               <LoginRememberMeCheckbox
+                checked={values.rememberMe}
                 onChange={(e) => {
                   setFieldValue('rememberMe', e.target.checked);
                 }}

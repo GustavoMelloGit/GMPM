@@ -16,12 +16,6 @@ export const VerticalNavContainer = styled(Box)`
   display: flex;
 `;
 
-export const UserInfoContainer = styled(Box)`
-  margin-left: 10px;
-  color: white;
-  min-width: 0;
-`;
-
 export const VerticalNavContentContainer = styled(Container)`
   padding-top: 5rem;
   @media screen and (max-width: ${mobileWidth}px) {
@@ -37,12 +31,6 @@ export const VerticalNavContentWrapper = styled(Box)<VerticalNavProps>`
     css`
       margin-left: 20rem;
     `}
-`;
-
-export const ProfileContainer = styled(Box)`
-  display: flex;
-  width: 100%;
-  margin-bottom: 5rem;
 `;
 
 export const AppDrawer = styled(Box)<VerticalNavProps>`

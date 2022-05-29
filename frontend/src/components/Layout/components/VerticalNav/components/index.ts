@@ -1,3 +1,4 @@
-import NavList from "./NavList";
+import NavList from './NavList';
+import UserInfo from './UserInfo';
 
-export { NavList };
+export { NavList, UserInfo };
