@@ -15,6 +15,7 @@ import AddIcon from '@mui/icons-material/Add';
 import LoaderComponent from '../../../components/Loader';
 import UpdateSite from '../Update';
 import toast from 'react-hot-toast';
+import useDebounce from '../../../shared/hooks/useDebounce';
 
 const SitesPage: React.FC = () => {
   const [sitesData, setSitesData] = useState([] as Site[]);
@@ -23,6 +24,7 @@ const SitesPage: React.FC = () => {
   const [searchInputValue, setSearchInputValue] = useState('');
   const [createSiteModal, setCreateSiteModal] = useState(false);
   const [updateSiteModal, setUpdateSiteModal] = useState(false);
+  const debouncedSearch = useDebounce<string>(searchInputValue);
   const [isLoading, setIsLoading] = useState(false);
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -70,17 +72,11 @@ const SitesPage: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    const filterTimeout = setTimeout(() => {
-      const filteredSites = sitesData.filter((site) => {
-        return site.name.toLowerCase().includes(searchInputValue.toLowerCase());
-      });
-      setSearchedSites(filteredSites);
-    }, 500);
-
-    return () => {
-      clearTimeout(filterTimeout);
-    };
-  }, [searchInputValue, sitesData]);
+    const filteredSites = sitesData.filter((site) => {
+      return site.name.toLowerCase().includes(debouncedSearch.toLowerCase());
+    });
+    setSearchedSites(filteredSites);
+  }, [debouncedSearch, sitesData]);
 
   return (
     <>
