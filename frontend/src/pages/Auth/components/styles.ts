@@ -10,6 +10,9 @@ export const AuthPageDivider = styled(Divider)`
 
 export const AuthSubmitButton = styled(Button)`
   background-color: ${colors.orange[500]};
+  && * {
+    color: white;
+  }
   :hover {
     background-color: ${colors.orange[600]};
   }
