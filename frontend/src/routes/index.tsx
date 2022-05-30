@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import AppLayout from '../components/Layout';
 import ProtectedRoute from '../components/ProtectedRoute';
 import authRoutes from '../pages/Auth/route';
+import NotFoundPage from '../pages/Error/404';
 import generatorRoutes from '../pages/Generator/route';
 import sitesRoutes from '../pages/Sites/route';
 
@@ -33,6 +34,7 @@ const AppRoutes: React.FC = () => {
             />
           );
         })}
+        <Route path='*' element={<NotFoundPage />} />
       </Routes>
     </React.Suspense>
   );
