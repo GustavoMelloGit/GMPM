@@ -4,4 +4,5 @@ export enum AppURLs {
   LOGIN = '/',
   SIGNUP = '/signup',
   SITES = '/sites',
+  GENERATOR = '/generator',
 }

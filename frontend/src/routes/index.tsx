@@ -3,9 +3,10 @@ import { Routes, Route } from 'react-router-dom';
 import AppLayout from '../components/Layout';
 import ProtectedRoute from '../components/ProtectedRoute';
 import authRoutes from '../pages/Auth/route';
+import generatorRoutes from '../pages/Generator/route';
 import sitesRoutes from '../pages/Sites/route';
 
-const routesConfig = [...sitesRoutes];
+const routesConfig = [...sitesRoutes, ...generatorRoutes];
 const routesWithoutLayout = [...authRoutes];
 
 const AppRoutes: React.FC = () => {

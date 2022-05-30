@@ -1,8 +1,13 @@
 import React from 'react';
-import { List, ListItem, Box } from '@mui/material';
+import { ListItem, Box } from '@mui/material';
 import { navItems } from '../../../../../../routes/routesConfig';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { NavListIcon, NavListItemButton, NavListText } from './styles';
+import {
+  NavListIcon,
+  NavListItemButton,
+  NavListList,
+  NavListText,
+} from './styles';
 
 const NavList: React.FC = (props) => {
   const navigate = useNavigate();
@@ -10,7 +15,7 @@ const NavList: React.FC = (props) => {
 
   return (
     <Box component='nav'>
-      <List aria-label='vertical navbar'>
+      <NavListList aria-label='vertical navbar'>
         {navItems.map((item) => {
           const active = item.url === location.pathname;
 
@@ -26,7 +31,7 @@ const NavList: React.FC = (props) => {
             </ListItem>
           );
         })}
-      </List>
+      </NavListList>
     </Box>
   );
 };

@@ -1,5 +1,6 @@
 import { FC, LazyExoticComponent } from 'react';
 import { sitesNavItem } from '../pages/Sites/route';
+import { generatorNavItem } from '../pages/Generator/route';
 
 export interface NavItemProps {
   id: string;
@@ -19,4 +20,4 @@ export interface RouteConfigProps {
   exact?: boolean;
 }
 
-export const navItems: NavItemProps[] = [sitesNavItem];
+export const navItems: NavItemProps[] = [sitesNavItem, generatorNavItem];
