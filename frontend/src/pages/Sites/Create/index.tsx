@@ -24,7 +24,7 @@ const CreateSite: React.FC<CreateSiteProps> = ({
   };
   return (
     <SiteForm
-      initialValues={{ email: '', name: '', password: '', url: '' }}
+      initialValues={{ username: '', name: '', password: '', url: '' }}
       submitText='Criar'
       titleText='Criar novo site'
       modalIsOpen={modalState}

@@ -25,7 +25,7 @@ const DataFields: React.FC<DataFieldsProps> = ({ site }) => {
     <DataFieldsWrapper>
       <TextField
         label='E-mail'
-        value={site.email}
+        value={site.username}
         variant='filled'
         fullWidth
         disabled
@@ -34,7 +34,7 @@ const DataFields: React.FC<DataFieldsProps> = ({ site }) => {
             <InputAdornment position='end'>
               <IconButton
                 aria-label='copia o email para área de transferência'
-                onClick={handleCopyToClipboard.bind(null, site.email)}
+                onClick={handleCopyToClipboard.bind(null, site.username)}
                 edge='end'
               >
                 <ContentCopyIcon className='icon' />

@@ -14,7 +14,7 @@ export default class Site extends BaseModel {
   public url: string
 
   @column()
-  public email: string
+  public username: string
 
   @column()
   public password: string

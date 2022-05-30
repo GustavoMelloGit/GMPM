@@ -1,6 +1,6 @@
 export interface Site {
   url: string;
-  email: string;
+  username: string;
   password: string;
   name: string;
   uuid: string;
