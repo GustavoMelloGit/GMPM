@@ -17,7 +17,7 @@ import CancelButton from '../../../../components/Buttons/CancelButton';
 export interface SiteFormValues {
   name: string;
   url: string;
-  email: string;
+  username: string;
   password: string;
 }
 interface SiteFormProps {
@@ -45,10 +45,7 @@ const SiteForm: React.FC<SiteFormProps> = ({
         'Digite uma URL válida'
       )
       .required('Digite a url do site'),
-    email: yup
-      .string()
-      .email('Digite um e-mail válido')
-      .required('Digite o email do site'),
+    username: yup.string().required('Digite o username do site'),
     password: yup.string().required('Digite a senha utilizada').min(5),
   });
   return (
@@ -76,7 +73,7 @@ const SiteForm: React.FC<SiteFormProps> = ({
               <Divider />
               <FormikTextInput name='name' label='Nome' />
               <FormikTextInput name='url' label='URL' />
-              <FormikTextInput name='email' label='E-mail' />
+              <FormikTextInput name='username' label='Username' />
               <FormikPasswordInput name='password' label='Senha' />
               <ModalFormActionsContainer>
                 <CancelButton onClick={handleCloseModal} />

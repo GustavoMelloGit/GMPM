@@ -17,7 +17,7 @@ const UpdateSite: React.FC<UpdateSiteProps> = ({
   updateData,
   site,
 }) => {
-  const { email, name, password, url, uuid } = site;
+  const { username, name, password, url, uuid } = site;
 
   const handleUpdateSite = async (values: SiteFormValues) => {
     try {
@@ -31,7 +31,7 @@ const UpdateSite: React.FC<UpdateSiteProps> = ({
 
   return (
     <SiteForm
-      initialValues={{ email, name, password, url }}
+      initialValues={{ username, name, password, url }}
       submitText='Salvar'
       titleText={`Editar ${name}`}
       modalIsOpen={modalState}

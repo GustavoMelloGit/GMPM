@@ -14,7 +14,7 @@ export default class Sites extends BaseSchema {
         .onDelete('CASCADE')
       table.string('url').notNullable()
       table.string('name').notNullable()
-      table.string('email')
+      table.string('username')
       table.string('password')
 
       /**
