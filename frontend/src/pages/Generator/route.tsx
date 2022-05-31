@@ -1,13 +1,13 @@
 import { lazy } from 'react';
-import KeyIcon from '@mui/icons-material/Key';
+import AutoFixHighOutlinedIcon from '@mui/icons-material/AutoFixHighOutlined';
 import { NavItemProps, RouteConfigProps } from '../../routes/routesConfig';
 import { AppURLs } from '../../shared/constants';
 
 export const generatorNavItem: NavItemProps = {
   id: 'generator',
-  title: 'Gerador',
+  title: 'Gerar senha',
   url: AppURLs.GENERATOR,
-  icon: <KeyIcon />,
+  icon: <AutoFixHighOutlinedIcon />,
   exact: true,
 };
 
