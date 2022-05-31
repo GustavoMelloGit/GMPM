@@ -1,7 +1,7 @@
 import React from 'react';
 import { NotFoundContainer } from './styles';
 import { ReactComponent as NotFoundImage } from '../../../assets/images/not-found.svg';
-import { Button, Typography } from '@mui/material';
+import { Typography } from '@mui/material';
 import { AppURLs } from '../../../shared/constants';
 import { useNavigate } from 'react-router-dom';
 import DefaultButton from '../../../components/Buttons/DefaultButton';

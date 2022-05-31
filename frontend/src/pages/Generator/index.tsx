@@ -1,10 +1,11 @@
 import React from 'react';
+import { GeneratorPageContainer } from './styles';
 
 const GeneratorPage: React.FC = (props) => {
   return (
-    <div>
+    <GeneratorPageContainer>
       <p>Hello World</p>
-    </div>
+    </GeneratorPageContainer>
   );
 };
 export default GeneratorPage;

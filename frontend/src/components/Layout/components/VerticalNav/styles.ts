@@ -17,7 +17,8 @@ export const VerticalNavContainer = styled(Box)`
 `;
 
 export const VerticalNavContentContainer = styled(Container)`
-  padding-top: 5rem;
+  height: 100%;
+  width: 100%;
   @media screen and (max-width: ${mobileWidth}px) {
     padding-top: 1rem;
   }
