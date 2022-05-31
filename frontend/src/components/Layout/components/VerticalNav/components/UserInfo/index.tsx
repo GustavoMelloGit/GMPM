@@ -16,6 +16,7 @@ const UserInfo: React.FC = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
   return (
     <ProfileContainer component='header'>
       <Avatar
@@ -27,7 +28,7 @@ const UserInfo: React.FC = () => {
           fontSize: '2em',
         }}
       >
-        {user.name[0].toUpperCase()}
+        {user && user.name[0].toUpperCase()}
       </Avatar>
       <UserInfoContainer>
         <Typography fontWeight={700} noWrap>
