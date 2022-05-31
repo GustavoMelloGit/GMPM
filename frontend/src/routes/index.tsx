@@ -5,6 +5,7 @@ import ProtectedRoute from '../components/ProtectedRoute';
 import authRoutes from '../pages/Auth/route';
 import NotFoundPage from '../pages/Error/404';
 import generatorRoutes from '../pages/Generator/route';
+import LoaderPage from '../pages/Loader';
 import sitesRoutes from '../pages/Sites/route';
 
 const routesConfig = [...sitesRoutes, ...generatorRoutes];
@@ -12,7 +13,7 @@ const routesWithoutLayout = [...authRoutes];
 
 const AppRoutes: React.FC = () => {
   return (
-    <React.Suspense fallback={<>...</>}>
+    <React.Suspense fallback={<LoaderPage />}>
       <Routes>
         {routesWithoutLayout.map((route) => {
           const Component = route.component;
