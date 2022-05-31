@@ -5,4 +5,8 @@ export const LoaderContainer = styled(Box)`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  && * {
+    color: white;
+  }
 `;

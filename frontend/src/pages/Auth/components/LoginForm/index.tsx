@@ -1,14 +1,15 @@
 import React from 'react';
 import { Formik } from 'formik';
 import * as yup from 'yup';
-import {
-  LoginEmailInput,
-  LoginPasswordInput,
-  LoginRememberMeCheckbox,
-} from './styles';
+import { LoginRememberMeCheckbox } from './styles';
 import { CircularProgress, FormControlLabel } from '@mui/material';
 import { PageForm, PageFormTitle } from '../../../../shared/styles/form';
-import { AuthPageDivider, AuthSubmitButton } from '../styles';
+import {
+  AuthPageDivider,
+  AuthSubmitButton,
+  StyledTextInput,
+  StyledPasswordInput,
+} from '../styles';
 
 export interface LoginFormValues {
   email: string;
@@ -53,13 +54,13 @@ const LoginForm: React.FC<LoginFormProps> = ({ onSubmit, titleText }) => {
             {titleText}
           </PageFormTitle>
           <AuthPageDivider />
-          <LoginEmailInput
+          <StyledTextInput
             autoComplete='username'
             label='E-mail'
             name='email'
             type='email'
           />
-          <LoginPasswordInput label='Senha' name='password' />
+          <StyledPasswordInput label='Senha' name='password' />
           <FormControlLabel
             control={
               <LoginRememberMeCheckbox

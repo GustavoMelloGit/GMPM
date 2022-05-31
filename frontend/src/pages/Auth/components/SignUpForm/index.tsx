@@ -1,13 +1,14 @@
 import { CircularProgress } from '@mui/material';
-import { Form, Formik } from 'formik';
+import { Formik } from 'formik';
 import React from 'react';
 import * as yup from 'yup';
-import {
-  FormikPasswordInput,
-  FormikTextInput,
-} from '../../../../components/Inputs';
 import { PageForm, PageFormTitle } from '../../../../shared/styles/form';
-import { AuthPageDivider, AuthSubmitButton } from '../styles';
+import {
+  AuthPageDivider,
+  AuthSubmitButton,
+  StyledPasswordInput,
+  StyledTextInput,
+} from '../styles';
 
 export interface SignupFormValues {
   name: string;
@@ -58,14 +59,14 @@ const SignupForm: React.FC<SignupFormProps> = ({
             {titleText}
           </PageFormTitle>
           <AuthPageDivider />
-          <FormikTextInput
+          <StyledTextInput
             required
             autoComplete='full-name'
             name='name'
             label='Nome'
           />
-          <FormikTextInput required name='email' label='E-mail' type='email' />
-          <FormikPasswordInput required name='password' label='Senha' />
+          <StyledTextInput required name='email' label='E-mail' type='email' />
+          <StyledPasswordInput required name='password' label='Senha' />
           <AuthSubmitButton variant='contained' fullWidth type='submit'>
             {isSubmitting ? <CircularProgress size={24} /> : submitText}
           </AuthSubmitButton>
