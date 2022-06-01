@@ -15,6 +15,7 @@ import {
   SiteCardMenuIcon,
   SiteCardGoToWebsite,
   SiteCardMenu,
+  SiteCardWrapper,
 } from './styles';
 import { Site } from '../../../../../shared/types/Site';
 import { isValidUrl } from '../../../../../shared/utils/validators';
@@ -54,50 +55,52 @@ const SiteCard: React.FC<SiteCardProps> = ({
 
   return (
     <Card>
-      <Box px={2} py={1}>
-        <SiteCardHeader>
-          <Box minWidth={0}>
-            <Typography variant='h6' component='p' color='black' noWrap>
-              {site.name}
-            </Typography>
-            <Typography
-              variant='body2'
-              component='p'
-              color='textSecondary'
-              noWrap
+      <SiteCardWrapper>
+        <Box>
+          <SiteCardHeader>
+            <Box minWidth={0}>
+              <Typography variant='h6' component='p' color='black' noWrap>
+                {site.name}
+              </Typography>
+              <Typography
+                variant='body2'
+                component='p'
+                color='textSecondary'
+                noWrap
+              >
+                {site.url}
+              </Typography>
+            </Box>
+            <IconButton
+              aria-label={`abrir menu ${site.name}`}
+              onClick={handleToggleMenu}
             >
-              {site.url}
-            </Typography>
-          </Box>
-          <IconButton
-            aria-label={`abrir menu ${site.name}`}
-            onClick={handleToggleMenu}
-          >
-            <SiteCardMenuIcon />
-          </IconButton>
-          <SiteCardMenu
-            anchorEl={menuIsOpen}
-            open={Boolean(menuIsOpen)}
-            onClose={() => setMenuIsOpen(null)}
-            MenuListProps={{
-              'aria-labelledby': 'site-card-menu',
-            }}
-          >
-            <MenuItem onClick={handleEditSite.bind(this, site)}>
-              <ListItemIcon>
-                <EditIcon />
-              </ListItemIcon>
-              <ListItemText>Editar</ListItemText>
-            </MenuItem>
-            <MenuItem onClick={handleDeleteSite.bind(this, site)}>
-              <ListItemIcon>
-                <DeleteIcon />
-              </ListItemIcon>
-              <ListItemText>Excluir</ListItemText>
-            </MenuItem>
-          </SiteCardMenu>
-        </SiteCardHeader>
-        <Divider />
+              <SiteCardMenuIcon />
+            </IconButton>
+            <SiteCardMenu
+              anchorEl={menuIsOpen}
+              open={Boolean(menuIsOpen)}
+              onClose={() => setMenuIsOpen(null)}
+              MenuListProps={{
+                'aria-labelledby': 'site-card-menu',
+              }}
+            >
+              <MenuItem onClick={handleEditSite.bind(this, site)}>
+                <ListItemIcon>
+                  <EditIcon />
+                </ListItemIcon>
+                <ListItemText>Editar</ListItemText>
+              </MenuItem>
+              <MenuItem onClick={handleDeleteSite.bind(this, site)}>
+                <ListItemIcon>
+                  <DeleteIcon />
+                </ListItemIcon>
+                <ListItemText>Excluir</ListItemText>
+              </MenuItem>
+            </SiteCardMenu>
+          </SiteCardHeader>
+          <Divider />
+        </Box>
         <SiteCardContentWrapper>
           <DataFields site={site} />
           <SiteCardGoToWebsite
@@ -107,7 +110,7 @@ const SiteCard: React.FC<SiteCardProps> = ({
             Abrir no navegador
           </SiteCardGoToWebsite>
         </SiteCardContentWrapper>
-      </Box>
+      </SiteCardWrapper>
     </Card>
   );
 };

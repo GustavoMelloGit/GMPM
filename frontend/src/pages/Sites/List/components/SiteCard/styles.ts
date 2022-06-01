@@ -14,6 +14,10 @@ export const SiteCardMenuIcon = styled(MoreVertIcon)`
 `;
 
 export const SiteCardContentWrapper = styled(Box)`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   margin-top: 1rem;
   > *:not(:last-child) {
     margin-bottom: 1rem;
@@ -40,4 +44,11 @@ export const SiteCardMenu = styled(Menu)`
   svg {
     fill: black;
   }
+`;
+
+export const SiteCardWrapper = styled(Box)`
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 8px 16px;
 `;
