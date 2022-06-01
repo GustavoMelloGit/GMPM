@@ -17,6 +17,9 @@ export const VerticalNavContainer = styled(Box)`
 `;
 
 export const VerticalNavContentContainer = styled(Container)`
+  display: flex !important;
+  flex-direction: column;
+  flex: 1;
   height: 100%;
   width: 100%;
   @media screen and (max-width: ${mobileWidth}px) {
