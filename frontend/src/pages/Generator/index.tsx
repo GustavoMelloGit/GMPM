@@ -156,7 +156,7 @@ const GeneratorPage: React.FC = () => {
                   label='Símbolos'
                 />
               </FormGroupStyled>
-              <SubmitButton bgColor={colors.orange[500]}>
+              <SubmitButton $bgColor={colors.orange[500]}>
                 Gerar senha
               </SubmitButton>
             </Form>

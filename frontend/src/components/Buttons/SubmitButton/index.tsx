@@ -4,16 +4,16 @@ import { SubmitButtonComponent } from './styles';
 
 interface SubmitButtonProps extends ButtonProps {
   children: React.ReactNode;
-  bgColor?: string;
+  $bgColor?: string;
 }
 const SubmitButton: React.FC<SubmitButtonProps> = ({
   children,
-  bgColor,
+  $bgColor,
   ...props
 }) => {
   return (
     <SubmitButtonComponent
-      $bgColor={bgColor}
+      $bgColor={$bgColor}
       variant='contained'
       type='submit'
       {...props}
