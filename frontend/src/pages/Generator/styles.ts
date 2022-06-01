@@ -66,6 +66,13 @@ export const GeneratorLengthInput = styled(FormikTextInput)`
 `;
 
 export const GeneratorForm = styled(Form)`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  button {
+    align-self: center;
+  }
   > *:not(:last-child) {
     margin-bottom: 1rem;
   }

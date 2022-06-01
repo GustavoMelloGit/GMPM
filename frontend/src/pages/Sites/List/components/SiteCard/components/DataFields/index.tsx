@@ -5,6 +5,7 @@ import { DataFieldsWrapper } from './styles';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import zxcvbn from 'zxcvbn';
 
 interface DataFieldsProps {
   site: Site;
@@ -19,6 +20,10 @@ const DataFields: React.FC<DataFieldsProps> = ({ site }) => {
 
   const handleTogglePassword = () => {
     setShowPassword((prev) => !prev);
+  };
+
+  const validateStrongPassword = (password: string) => {
+    return zxcvbn(password).score > 2;
   };
 
   return (
@@ -50,6 +55,10 @@ const DataFields: React.FC<DataFieldsProps> = ({ site }) => {
         variant='filled'
         fullWidth
         disabled
+        error={!validateStrongPassword(site.password)}
+        helperText={
+          !validateStrongPassword(site.password) ? 'Cuidado! Senha fraca' : ''
+        }
         InputProps={{
           endAdornment: (
             <React.Fragment>

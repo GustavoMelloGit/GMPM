@@ -48,8 +48,10 @@ const GeneratorPage: React.FC = () => {
   };
 
   const handleCopyPassword = () => {
-    navigator.clipboard.writeText(passwordGenerated);
-    setTooltipOpen(true);
+    if (passwordGenerated) {
+      navigator.clipboard.writeText(passwordGenerated);
+      setTooltipOpen(true);
+    }
   };
 
   useEffect(() => {
