@@ -5,6 +5,7 @@ export default class SitesController {
   public async create({ request, auth }: HttpContextContract) {
     const userUuid = auth.user?.$attributes.uuid
     const { name, url, username, password } = request.only(['name', 'url', 'username', 'password'])
+
     try {
       const site = await Site.create({
         name,

@@ -33,6 +33,20 @@ export default class Site extends BaseModel {
     site.uuid = crypto.randomBytes(16).toString('hex')
   }
 
+  @beforeCreate()
+  public static async encryptPassword(site: Site) {
+    const iv = crypto.randomBytes(12)
+    const envKey = process.env.CRYPTO_KEY
+
+    if (envKey) {
+      const key = Buffer.from(envKey?.split(' ').map(Number))
+      const cipher = crypto.createCipheriv('aes-256-gcm', key, iv)
+      const passwordEncrypted = cipher.update(site.password)
+      cipher.final()
+      site.password = passwordEncrypted.toString('hex')
+    }
+  }
+
   @belongsTo(() => User, {
     localKey: 'user_uuid',
     foreignKey: 'uuid',
