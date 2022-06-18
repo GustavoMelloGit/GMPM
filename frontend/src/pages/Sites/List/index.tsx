@@ -15,13 +15,11 @@ import AddIcon from '@mui/icons-material/Add';
 import LoaderComponent from '../../../components/Loader';
 import UpdateSite from '../Update';
 import toast from 'react-hot-toast';
-import useDebounce from '../../../shared/hooks/useDebounce';
 import CryptoJS from 'crypto-js';
 import usePagination from '../../../shared/hooks/usePagination';
 
 const SitesPage: React.FC = () => {
   const [sitesData, setSitesData] = useState([] as Site[]);
-  const [searchedSites, setSearchedSites] = useState([] as Site[]);
   const [selectedSite, setSelectedSite] = useState({} as Site);
   const [createSiteModal, setCreateSiteModal] = useState(false);
   const [updateSiteModal, setUpdateSiteModal] = useState(false);
@@ -90,13 +88,6 @@ const SitesPage: React.FC = () => {
     };
   }, [getSitesData]);
 
-  useEffect(() => {
-    const filteredSites = sitesData.filter((site) => {
-      return site.name.toLowerCase().includes(debouncedSearch.toLowerCase());
-    });
-    setSearchedSites(filteredSites);
-  }, [debouncedSearch, sitesData]);
-
   return (
     <>
       <CreateSite
@@ -129,9 +120,9 @@ const SitesPage: React.FC = () => {
 
         {isLoading ? (
           <LoaderComponent />
-        ) : searchedSites.length > 0 ? (
+        ) : sitesData.length > 0 ? (
           <HomeContentGrid>
-            {searchedSites.map((site, index) => (
+            {sitesData.map((site, index) => (
               <SiteCard
                 key={index}
                 site={site}
