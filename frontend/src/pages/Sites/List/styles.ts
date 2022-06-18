@@ -1,5 +1,4 @@
 import { Box, styled } from '@mui/system';
-import { mobileWidth } from '../../../shared/constants';
 
 export const HomeHeader = styled(Box)`
   display: grid;

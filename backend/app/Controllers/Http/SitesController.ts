@@ -20,18 +20,21 @@ export default class SitesController {
     }
   }
 
-  public async read({ auth }: HttpContextContract) {
-    const userUuid = auth.user?.$attributes.uuid
+  public async read({ auth, request }: HttpContextContract) {
     try {
-      const all = await Site.query().where('user_uuid', userUuid)
+      const { search, page, perPage } = request.qs()
+      const userUuid = auth.user?.$attributes.uuid
 
-      return all.map((site) => ({
-        uuid: site.uuid,
-        name: site.name,
-        url: site.url,
-        username: site.username,
-        password: site.password,
-      }))
+      const queryPage = page || 1
+      const queryPerPage = perPage || 10
+      const querySearch = search || ''
+
+      const allSites = await Site.query()
+        .where('user_uuid', userUuid)
+        .where('name', 'like', `%${querySearch}%`)
+        .paginate(queryPage, queryPerPage)
+
+      return allSites
     } catch (e) {
       return { error: e }
     }

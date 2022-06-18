@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { Button, Typography } from '@mui/material';
 import {
   HomeActionContainer,
@@ -17,20 +17,18 @@ import UpdateSite from '../Update';
 import toast from 'react-hot-toast';
 import useDebounce from '../../../shared/hooks/useDebounce';
 import CryptoJS from 'crypto-js';
+import usePagination from '../../../shared/hooks/usePagination';
 
 const SitesPage: React.FC = () => {
   const [sitesData, setSitesData] = useState([] as Site[]);
   const [searchedSites, setSearchedSites] = useState([] as Site[]);
   const [selectedSite, setSelectedSite] = useState({} as Site);
-  const [searchInputValue, setSearchInputValue] = useState('');
   const [createSiteModal, setCreateSiteModal] = useState(false);
   const [updateSiteModal, setUpdateSiteModal] = useState(false);
-  const debouncedSearch = useDebounce<string>(searchInputValue);
-  const [isLoading, setIsLoading] = useState(false);
+  const { currentPage, rowsPerPage, handleSearchChange, debouncedSearch } =
+    usePagination();
 
-  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchInputValue(event.target.value);
-  };
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleToggleCreateModal = () => {
     setCreateSiteModal((prevState) => !prevState);
@@ -40,16 +38,22 @@ const SitesPage: React.FC = () => {
     setUpdateSiteModal((prevState) => !prevState);
   };
 
-  const getSitesData = async () => {
+  const getSitesData = useCallback(async () => {
     setIsLoading(true);
     try {
-      const response = await api.get('/sites');
-      const { data }: { data: Site[] } = response;
+      const response = await api.get('/sites', {
+        params: {
+          search: debouncedSearch,
+          page: currentPage,
+          perPage: rowsPerPage,
+        },
+      });
+      const { data } = response;
 
       const envKey = process.env.REACT_APP_CRYPTO_KEY;
 
       if (envKey) {
-        const decryptedData = data.map((site: Site) => {
+        const decryptedData = data.data.map((site: Site) => {
           const decrypted = CryptoJS.AES.decrypt(site.password, envKey);
           const decryptedPassword = decrypted.toString(CryptoJS.enc.Utf8);
           return {
@@ -63,7 +67,7 @@ const SitesPage: React.FC = () => {
       toast.error('Erro ao buscar sites');
     }
     setIsLoading(false);
-  };
+  }, [debouncedSearch, currentPage, rowsPerPage]);
 
   const handleDeleteSite = async (site: Site) => {
     try {
@@ -84,7 +88,7 @@ const SitesPage: React.FC = () => {
     return () => {
       setSitesData([]);
     };
-  }, []);
+  }, [getSitesData]);
 
   useEffect(() => {
     const filteredSites = sitesData.filter((site) => {
@@ -112,10 +116,7 @@ const SitesPage: React.FC = () => {
             Sites
           </Typography>
           <HomeActionContainer>
-            <SearchInput
-              onChange={handleSearchChange}
-              value={searchInputValue}
-            />
+            <SearchInput onChange={handleSearchChange} />
             <Button
               color='inherit'
               aria-label='Adicionar site'
