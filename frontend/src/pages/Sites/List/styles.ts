@@ -17,7 +17,8 @@ export const HomeContentGrid = styled(Box)`
 export const HomeContainer = styled(Box)`
   display: flex;
   flex-direction: column;
-  color: white;
+  color: white !important;
+  padding-bottom: 1rem;
   width: 100%;
   height: 100%;
   > *:not(:last-child) {

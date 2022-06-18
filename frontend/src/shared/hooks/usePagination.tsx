@@ -1,24 +1,46 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import useDebounce from './useDebounce';
 
+const PAGINATION_OBJECT = {
+  currentPage: 1,
+  rowsPerPage: 10,
+  searchValue: '',
+  pagesCount: 0,
+};
 const usePagination = () => {
-  const [currentPage, setCurrentPage] = useState(1);
-  const [rowsPerPage, setRowsPerPage] = useState(10);
-  const [searchValue, setSearchValue] = useState('');
-  const debouncedSearch = useDebounce<string>(searchValue);
+  const [paginationObject, setPaginationObject] = useState(PAGINATION_OBJECT);
+  const debouncedSearch = useDebounce<string>(paginationObject.searchValue);
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchValue(event.target.value);
+    setPaginationObject((prevValues) => ({
+      ...prevValues,
+      searchValue: event.target.value,
+    }));
   };
 
+  const setCount = useCallback((count: number) => {
+    setPaginationObject((prevValues) => ({
+      ...prevValues,
+      pagesCount: count,
+    }));
+  }, []);
+
+  const handleSetCurrentPage = useCallback(
+    (event: React.ChangeEvent<unknown>, currentPage: number) => {
+      setPaginationObject((prevValues) => ({
+        ...prevValues,
+        currentPage: currentPage,
+      }));
+    },
+    []
+  );
+
   return {
-    currentPage,
-    setCurrentPage,
-    rowsPerPage,
-    setRowsPerPage,
-    searchValue,
+    paginationObject,
     handleSearchChange,
     debouncedSearch,
+    setCount,
+    handleSetCurrentPage,
   };
 };
 export default usePagination;

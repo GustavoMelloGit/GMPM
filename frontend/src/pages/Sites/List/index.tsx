@@ -17,14 +17,20 @@ import UpdateSite from '../Update';
 import toast from 'react-hot-toast';
 import CryptoJS from 'crypto-js';
 import usePagination from '../../../shared/hooks/usePagination';
+import PaginationComponent from '../../../components/Pagination';
 
 const SitesPage: React.FC = () => {
   const [sitesData, setSitesData] = useState([] as Site[]);
   const [selectedSite, setSelectedSite] = useState({} as Site);
   const [createSiteModal, setCreateSiteModal] = useState(false);
   const [updateSiteModal, setUpdateSiteModal] = useState(false);
-  const { currentPage, rowsPerPage, handleSearchChange, debouncedSearch } =
-    usePagination();
+  const {
+    paginationObject,
+    handleSearchChange,
+    debouncedSearch,
+    setCount,
+    handleSetCurrentPage,
+  } = usePagination();
 
   const [isLoading, setIsLoading] = useState(false);
 
@@ -42,8 +48,8 @@ const SitesPage: React.FC = () => {
       const response = await api.get('/sites', {
         params: {
           search: debouncedSearch,
-          page: currentPage,
-          perPage: rowsPerPage,
+          page: paginationObject.currentPage,
+          perPage: paginationObject.rowsPerPage,
         },
       });
       const { data } = response;
@@ -59,13 +65,19 @@ const SitesPage: React.FC = () => {
             password: decryptedPassword,
           };
         });
+        setCount(data.meta.last_page);
         setSitesData(decryptedData);
       }
     } catch (e: any) {
       toast.error('Erro ao buscar sites');
     }
     setIsLoading(false);
-  }, [debouncedSearch, currentPage, rowsPerPage]);
+  }, [
+    debouncedSearch,
+    paginationObject.currentPage,
+    paginationObject.rowsPerPage,
+    setCount,
+  ]);
 
   const handleDeleteSite = async (site: Site) => {
     try {
@@ -136,6 +148,11 @@ const SitesPage: React.FC = () => {
             Nenhum site encontrado
           </Typography>
         )}
+
+        <PaginationComponent
+          onChange={handleSetCurrentPage}
+          count={paginationObject.pagesCount}
+        />
       </HomeContainer>
     </>
   );

@@ -20,9 +20,10 @@ export const VerticalNavContentContainer = styled(Container)`
   display: flex !important;
   flex-direction: column;
   flex: 1;
-  height: 100%;
+  height: fit-content;
+  min-height: 100%;
   width: 100%;
-  padding-top: 2rem;
+  padding: 2rem 0;
   @media screen and (max-width: ${mobileWidth}px) {
     padding-top: 1rem;
   }
