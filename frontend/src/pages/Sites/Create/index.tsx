@@ -15,7 +15,9 @@ const CreateSite: React.FC<CreateSiteProps> = ({
 }) => {
   const handleCreateSite = async (values: SiteFormValues) => {
     try {
-      await api.post('/sites', values);
+      const response = await api.post('/sites', values);
+
+      toast.success('Site criado com sucesso!');
     } catch (e: any) {
       toast.error('Erro ao criar site');
     }

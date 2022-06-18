@@ -16,6 +16,7 @@ import LoaderComponent from '../../../components/Loader';
 import UpdateSite from '../Update';
 import toast from 'react-hot-toast';
 import useDebounce from '../../../shared/hooks/useDebounce';
+import CryptoJS from 'crypto-js';
 
 const SitesPage: React.FC = () => {
   const [sitesData, setSitesData] = useState([] as Site[]);
@@ -43,7 +44,21 @@ const SitesPage: React.FC = () => {
     setIsLoading(true);
     try {
       const response = await api.get('/sites');
-      setSitesData(response.data);
+      const { data }: { data: Site[] } = response;
+
+      const envKey = process.env.REACT_APP_CRYPTO_KEY;
+
+      if (envKey) {
+        const decryptedData = data.map((site: Site) => {
+          const decrypted = CryptoJS.AES.decrypt(site.password, envKey);
+          const decryptedPassword = decrypted.toString(CryptoJS.enc.Utf8);
+          return {
+            ...site,
+            password: decryptedPassword,
+          };
+        });
+        setSitesData(decryptedData);
+      }
     } catch (e: any) {
       toast.error('Erro ao buscar sites');
     }

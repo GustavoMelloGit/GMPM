@@ -4,4 +4,6 @@ export interface Site {
   password: string;
   name: string;
   uuid: string;
+  created_at: string;
+  updated_at: string;
 }
