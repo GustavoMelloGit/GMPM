@@ -1,5 +1,12 @@
 import { DateTime } from 'luxon'
-import { BaseModel, beforeCreate, BelongsTo, belongsTo, column } from '@ioc:Adonis/Lucid/Orm'
+import {
+  BaseModel,
+  beforeCreate,
+  beforeUpdate,
+  BelongsTo,
+  belongsTo,
+  column,
+} from '@ioc:Adonis/Lucid/Orm'
 import crypto from 'crypto'
 import CryptoJS from 'crypto-js'
 import User from './User'
@@ -35,7 +42,17 @@ export default class Site extends BaseModel {
   }
 
   @beforeCreate()
-  public static async encryptPassword(site: Site) {
+  public static async encryptCreatePassword(site: Site) {
+    const envKey = process.env.CRYPTO_KEY
+
+    if (envKey) {
+      const encrypted = CryptoJS.AES.encrypt(site.password, envKey)
+      site.password = encrypted.toString()
+    }
+  }
+
+  @beforeUpdate()
+  public static async encryptUpdatePassword(site: Site) {
     const envKey = process.env.CRYPTO_KEY
 
     if (envKey) {

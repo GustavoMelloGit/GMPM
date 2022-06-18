@@ -1,7 +1,5 @@
 export const mobileWidth = 768;
 
-export const defaultContentPaddingTop = '5rem';
-
 export enum AppURLs {
   LOGIN = '/',
   SIGNUP = '/signup',

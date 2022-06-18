@@ -1,8 +1,5 @@
 import { Box, styled } from '@mui/system';
-import {
-  defaultContentPaddingTop,
-  mobileWidth,
-} from '../../../shared/constants';
+import { mobileWidth } from '../../../shared/constants';
 
 export const HomeHeader = styled(Box)`
   display: grid;
@@ -24,12 +21,8 @@ export const HomeContainer = styled(Box)`
   color: white;
   width: 100%;
   height: 100%;
-  padding-top: ${defaultContentPaddingTop};
   > *:not(:last-child) {
     margin-bottom: 4rem;
-  }
-  @media screen and (max-width: ${mobileWidth}px) {
-    padding-top: 1rem;
   }
 `;
 

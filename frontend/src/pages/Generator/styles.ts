@@ -1,21 +1,7 @@
 import { Box, FormGroup, styled } from '@mui/material';
 import { Form } from 'formik';
 import { FormikTextInput } from '../../components/Inputs';
-import { defaultContentPaddingTop, mobileWidth } from '../../shared/constants';
 import colors from '../../styles/colors';
-
-export const GeneratorPageContainer = styled(Box)`
-  width: 100%;
-  flex: 1;
-  /* height: 100%; */
-  display: flex;
-  flex-direction: column;
-  color: white;
-  padding-top: ${defaultContentPaddingTop};
-  @media screen and (max-width: ${mobileWidth}px) {
-    padding-top: 1rem;
-  }
-`;
 
 export const GeneratorPageHeader = styled(Box)``;
 
@@ -25,6 +11,7 @@ export const GeneratorPageContent = styled(Box)`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  color: white;
 `;
 
 export const PasswordInputGenerated = styled(Box)`

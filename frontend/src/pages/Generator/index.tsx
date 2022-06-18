@@ -9,9 +9,7 @@ import {
   GeneratorContentCard,
   GeneratorForm,
   GeneratorLengthInput,
-  GeneratorPageContainer,
   GeneratorPageContent,
-  GeneratorPageHeader,
   PasswordInputGenerated,
 } from './styles';
 
@@ -59,117 +57,110 @@ const GeneratorPage: React.FC = () => {
   }, [tooltipDebounce]);
 
   return (
-    <GeneratorPageContainer>
-      <GeneratorPageHeader>
-        <Typography variant='h2' component='h1'>
-          Gerador de senhas
-        </Typography>
-      </GeneratorPageHeader>
-      <GeneratorPageContent>
-        <GeneratorContentCard>
-          <Tooltip
-            PopperProps={{
-              disablePortal: true,
-            }}
-            title='Copiado para área de transferência'
-            disableFocusListener
-            disableHoverListener
-            disableTouchListener
-            open={tooltipOpen}
-          >
-            <PasswordInputGenerated onClick={handleCopyPassword}>
-              <Typography variant='h5' component='h2'>
-                {passwordGenerated}
-              </Typography>
-            </PasswordInputGenerated>
-          </Tooltip>
-          <Formik
-            onSubmit={generatePassword}
-            initialValues={
-              {
-                length: 10,
-                uppercase: true,
-                lowercase: true,
-                numbers: true,
-                symbols: true,
-              } as PasswordGeneratorValues
-            }
-          >
-            {({ setFieldValue, values }) => (
-              <GeneratorForm>
+    <GeneratorPageContent>
+      <GeneratorContentCard>
+        <Tooltip
+          PopperProps={{
+            disablePortal: true,
+          }}
+          title='Copiado para área de transferência'
+          disableFocusListener
+          disableHoverListener
+          disableTouchListener
+          open={tooltipOpen}
+        >
+          <PasswordInputGenerated onClick={handleCopyPassword}>
+            <Typography variant='h5' component='h2'>
+              {passwordGenerated}
+            </Typography>
+          </PasswordInputGenerated>
+        </Tooltip>
+        <Formik
+          onSubmit={generatePassword}
+          initialValues={
+            {
+              length: 10,
+              uppercase: true,
+              lowercase: true,
+              numbers: true,
+              symbols: true,
+            } as PasswordGeneratorValues
+          }
+        >
+          {({ setFieldValue, values }) => (
+            <GeneratorForm>
+              <FormControlLabel
+                sx={{
+                  margin: 0,
+                }}
+                control={
+                  <GeneratorLengthInput
+                    type='number'
+                    variant='standard'
+                    name='length'
+                  />
+                }
+                label='Comprimento:'
+                labelPlacement='start'
+              />
+              <FormGroupStyled>
                 <FormControlLabel
-                  sx={{
-                    margin: 0,
-                  }}
+                  name='uppercase'
                   control={
-                    <GeneratorLengthInput
-                      type='number'
-                      variant='standard'
-                      name='length'
+                    <Checkbox
+                      checked={values.uppercase}
+                      onChange={(e) =>
+                        setFieldValue('uppercase', e.target.checked)
+                      }
                     />
                   }
-                  label='Comprimento:'
-                  labelPlacement='start'
+                  label='Letras maiúsculas (A-Z)'
                 />
-                <FormGroupStyled>
-                  <FormControlLabel
-                    name='uppercase'
-                    control={
-                      <Checkbox
-                        checked={values.uppercase}
-                        onChange={(e) =>
-                          setFieldValue('uppercase', e.target.checked)
-                        }
-                      />
-                    }
-                    label='Letras maiúsculas (A-Z)'
-                  />
-                  <FormControlLabel
-                    name='lowercase'
-                    control={
-                      <Checkbox
-                        checked={values.lowercase}
-                        onChange={(e) =>
-                          setFieldValue('lowercase', e.target.checked)
-                        }
-                      />
-                    }
-                    label='Letras minúsculas (a-z)'
-                  />
-                  <FormControlLabel
-                    name='numbers'
-                    control={
-                      <Checkbox
-                        checked={values.numbers}
-                        onChange={(e) =>
-                          setFieldValue('numbers', e.target.checked)
-                        }
-                      />
-                    }
-                    label='Números (0-9)'
-                  />
-                  <FormControlLabel
-                    name='symbols'
-                    control={
-                      <Checkbox
-                        checked={values.symbols}
-                        onChange={(e) =>
-                          setFieldValue('symbols', e.target.checked)
-                        }
-                      />
-                    }
-                    label='Símbolos'
-                  />
-                </FormGroupStyled>
-                <SubmitButton $bgColor={colors.orange[500]}>
-                  Gerar senha
-                </SubmitButton>
-              </GeneratorForm>
-            )}
-          </Formik>
-        </GeneratorContentCard>
-      </GeneratorPageContent>
-    </GeneratorPageContainer>
+                <FormControlLabel
+                  name='lowercase'
+                  control={
+                    <Checkbox
+                      checked={values.lowercase}
+                      onChange={(e) =>
+                        setFieldValue('lowercase', e.target.checked)
+                      }
+                    />
+                  }
+                  label='Letras minúsculas (a-z)'
+                />
+                <FormControlLabel
+                  name='numbers'
+                  control={
+                    <Checkbox
+                      checked={values.numbers}
+                      onChange={(e) =>
+                        setFieldValue('numbers', e.target.checked)
+                      }
+                    />
+                  }
+                  label='Números (0-9)'
+                />
+                <FormControlLabel
+                  name='symbols'
+                  control={
+                    <Checkbox
+                      checked={values.symbols}
+                      onChange={(e) =>
+                        setFieldValue('symbols', e.target.checked)
+                      }
+                    />
+                  }
+                  label='Símbolos'
+                />
+              </FormGroupStyled>
+              <SubmitButton $bgColor={colors.orange[500]}>
+                Gerar senha
+              </SubmitButton>
+            </GeneratorForm>
+          )}
+        </Formik>
+      </GeneratorContentCard>
+    </GeneratorPageContent>
   );
 };
 export default GeneratorPage;
