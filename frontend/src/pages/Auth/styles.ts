@@ -56,8 +56,7 @@ export const LoginPageAside = styled(Box)`
     height: fit-content;
 
     svg {
-      width: 70%;
-      min-width: 200px;
+      width: 200px;
     }
   }
 `;
