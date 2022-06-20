@@ -24,5 +24,23 @@ const GlobalStyle = createGlobalStyle`
         height: 100%;
         width: 100%;
     }
+  * {
+    scrollbar-width: auto;
+    scrollbar-color: #ff6341 transparent;
+  }
+
+  *::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background-color: #ff6341;
+    border-radius: 10px;
+    border: 3px solid transparent;
+  }
 `;
 export default GlobalStyle;
