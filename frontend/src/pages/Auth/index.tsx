@@ -79,22 +79,16 @@ const LoginPage: React.FC = () => {
             submitText='Cadastrar'
           />
         ) : (
-          <>
-            <LoginForm onSubmit={handleLogin} titleText='Login' />
-            <Typography>
-              Não possui uma conta?{' '}
-              <Button variant='text' onClick={toggleRegister}>
-                <Typography
-                  component='span'
-                  fontWeight='bold'
-                  textTransform='none'
-                >
-                  Cadastre-se
-                </Typography>
-              </Button>
-            </Typography>
-          </>
+          <LoginForm onSubmit={handleLogin} titleText='Login' />
         )}
+        <Typography>
+          {isRegistering ? 'Já possui uma conta?' : 'Não possui uma conta?'}
+          <Button variant='text' onClick={toggleRegister}>
+            <Typography component='span' fontWeight='bold' textTransform='none'>
+              {isRegistering ? 'Entrar' : 'Cadastre-se'}
+            </Typography>
+          </Button>
+        </Typography>
       </LoginPageFormContainer>
     </LoginPageContainer>
   );
