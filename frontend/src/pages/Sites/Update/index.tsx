@@ -2,6 +2,7 @@ import React from 'react';
 import toast from 'react-hot-toast';
 import api from '../../../service/api';
 import { Site } from '../../../shared/types/Site';
+import { encryptText } from '../../../shared/utils/encrypt';
 import SiteForm, { SiteFormValues } from '../components/Form';
 
 interface UpdateSiteProps {
@@ -21,6 +22,7 @@ const UpdateSite: React.FC<UpdateSiteProps> = ({
 
   const handleUpdateSite = async (values: SiteFormValues) => {
     try {
+      values.password = encryptText(values.password);
       await api.put(`/sites/${uuid}`, values);
     } catch (e: any) {
       toast.error('Erro ao atualizar site');

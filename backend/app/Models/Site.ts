@@ -41,26 +41,6 @@ export default class Site extends BaseModel {
     site.uuid = crypto.randomBytes(16).toString('hex')
   }
 
-  @beforeCreate()
-  public static async encryptCreatePassword(site: Site) {
-    const envKey = process.env.CRYPTO_KEY
-
-    if (envKey) {
-      const encrypted = CryptoJS.AES.encrypt(site.password, envKey)
-      site.password = encrypted.toString()
-    }
-  }
-
-  @beforeUpdate()
-  public static async encryptUpdatePassword(site: Site) {
-    const envKey = process.env.CRYPTO_KEY
-
-    if (envKey) {
-      const encrypted = CryptoJS.AES.encrypt(site.password, envKey)
-      site.password = encrypted.toString()
-    }
-  }
-
   @belongsTo(() => User, {
     localKey: 'user_uuid',
     foreignKey: 'uuid',

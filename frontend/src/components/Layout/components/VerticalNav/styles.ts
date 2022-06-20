@@ -1,7 +1,6 @@
 import styled, { css } from 'styled-components';
 import { Box } from '@mui/system';
 import colors from '../../../../styles/colors';
-import { Container } from '@mui/material';
 import { mobileWidth } from '../../../../shared/constants';
 
 interface VerticalNavProps {
@@ -16,14 +15,14 @@ export const VerticalNavContainer = styled(Box)`
   display: flex;
 `;
 
-export const VerticalNavContentContainer = styled(Container)`
+export const VerticalNavContentContainer = styled(Box)`
   display: flex !important;
   flex-direction: column;
   flex: 1;
   height: fit-content;
   min-height: 100%;
   width: 100%;
-  padding: 2rem 0;
+  padding: 2rem 3%;
   @media screen and (max-width: ${mobileWidth}px) {
     padding-top: 1rem;
   }

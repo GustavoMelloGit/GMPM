@@ -2,6 +2,7 @@ import React from 'react';
 import toast from 'react-hot-toast';
 import api from '../../../service/api';
 import SiteForm, { SiteFormValues } from '../components/Form';
+import { encryptText } from '../../../shared/utils/encrypt';
 
 interface CreateSiteProps {
   toggleModal: () => void;
@@ -15,6 +16,7 @@ const CreateSite: React.FC<CreateSiteProps> = ({
 }) => {
   const handleCreateSite = async (values: SiteFormValues) => {
     try {
+      values.password = encryptText(values.password);
       await api.post('/sites', values);
       toast.success('Site criado com sucesso!');
     } catch (e: any) {

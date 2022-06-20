@@ -7,6 +7,7 @@ const PAGINATION_OBJECT = {
   searchValue: '',
   pagesCount: 0,
 };
+
 const usePagination = () => {
   const [paginationObject, setPaginationObject] = useState(PAGINATION_OBJECT);
   const debouncedSearch = useDebounce<string>(paginationObject.searchValue);
