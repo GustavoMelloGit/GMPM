@@ -34,7 +34,7 @@ export const LoginPageFormContainer = styled(Container)`
     color: white;
   }
 `;
-export const LoginPageAside = styled(Box)`
+export const LoginPageAside = styled('aside')`
   width: 40vw;
   height: 100%;
   background-color: ${colors.gray[700]};
